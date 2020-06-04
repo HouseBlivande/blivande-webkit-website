@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  props: ["data", "mq"]
+  props: ["data", "mq"],
 };
 </script>
 <style scoped lang="scss">

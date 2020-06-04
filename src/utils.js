@@ -4,7 +4,7 @@ var YAML = require("yamljs");
 import axios from "axios";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       config,
       globalStyleSheet: null,
@@ -12,7 +12,7 @@ export default {
       sections: null,
       navItems: null,
       event: null,
-      overrideStyle: false
+      overrideStyle: false,
     };
   },
   methods: {
@@ -30,8 +30,8 @@ export default {
       if (font) {
         WebFontLoader.load({
           google: {
-            families: [font]
-          }
+            families: [font],
+          },
         });
         obj["fonts"] = [font];
         obj["title"]["font"] = [font];
@@ -103,7 +103,7 @@ export default {
         var directories = this.getYaml(data.post_stream.posts[0].cooked);
         window.console.log(directories);
         var result = directories.filter(
-          x => x.alias == pathname || x.id == pathname || x.domain == address
+          (x) => x.alias == pathname || x.id == pathname || x.domain == address
         )[0];
         window.console.log(address);
         if (result && result.id) {
@@ -148,15 +148,15 @@ export default {
     },
     getNavElements(sections) {
       if (sections.length) {
-        var navArray = sections.map(function(el) {
+        var navArray = sections.map(function (el) {
           if (el.id) {
             return {
               text: el.id,
-              url: "#" + el.id
+              url: "#" + el.id,
             };
           }
         });
-        this.$globals.navItems = navArray.filter(function(el) {
+        this.$globals.navItems = navArray.filter(function (el) {
           return el != null;
         });
       }
@@ -164,8 +164,8 @@ export default {
     loadFonts(fontFamily) {
       WebFontLoader.load({
         google: {
-          families: fontFamily
-        }
+          families: fontFamily,
+        },
       });
     },
     validateJson(str) {
@@ -187,7 +187,7 @@ export default {
     getJson(value) {
       const doc = new DOMParser().parseFromString(value, "text/html");
       var json = [...doc.querySelectorAll("code")].map(
-        code => code.textContent
+        (code) => code.textContent
       );
       var final = String(json).replace(/\n/g, " ");
       if (this.validateJson(final)) {
@@ -200,7 +200,7 @@ export default {
     getYaml(value) {
       const doc = new DOMParser().parseFromString(value, "text/html");
       var yaml = [...doc.querySelectorAll("code")].map(
-        code => code.textContent
+        (code) => code.textContent
       );
       if (this.validateYaml(yaml[0])) {
         return YAML.parse(yaml[0]);
@@ -319,7 +319,7 @@ export default {
       }
 
       var obj = {
-        width: width
+        width: width,
       };
 
       return obj;
@@ -341,7 +341,7 @@ export default {
         background: "url(" + backgroundUrl + "), " + backgroundColor,
         backgroundSize: backgroundSize,
         backgroundRepeat: backgroundRepeat,
-        padding: containerPadding
+        padding: containerPadding,
       };
     },
     textStyle(element, style) {
@@ -355,7 +355,7 @@ export default {
         fontFamily: this.applyStyle(element, "font"),
         fontWeight: this.applyStyle(element, "weight"),
         borderBottom: this.applyStyle(element, "border"),
-        color: this.applyStyle(element, "color")
+        color: this.applyStyle(element, "color"),
       };
 
       return styleObj;
@@ -374,7 +374,7 @@ export default {
         color: color,
         backgroundColor: background,
         fontWeight: this.applyStyle(element, "weight"),
-        fontFamily: this.applyStyle("paragraph", "font")
+        fontFamily: this.applyStyle("paragraph", "font"),
       };
       return styleObj;
     },
@@ -385,7 +385,7 @@ export default {
         background = "black";
       }
       var styleObj = {
-        "--hover-border-color": background
+        "--hover-border-color": background,
       };
       return styleObj;
     },
@@ -393,7 +393,7 @@ export default {
       this.sectionStyle = style;
       var styleObj = {
         padding: this.applyStyle("container", "padding"),
-        backgroundColor: this.applyStyle("container", "background")
+        backgroundColor: this.applyStyle("container", "background"),
       };
       return styleObj;
     },
@@ -402,7 +402,7 @@ export default {
       var styleObj = {
         width: this.applyStyle("wrapper", "width"),
         padding: this.applyStyle("wrapper", "padding"),
-        backgroundColor: this.applyStyle("wrapper", "background")
+        backgroundColor: this.applyStyle("wrapper", "background"),
       };
       return styleObj;
     },
@@ -473,6 +473,6 @@ export default {
     },
     getPermalink(slug) {
       return this.$globals.config.baseUrl + "/t/" + slug;
-    }
-  }
+    },
+  },
 };

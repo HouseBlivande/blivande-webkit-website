@@ -10,13 +10,13 @@ export default {
   props: {
     index: Number,
     title: String,
-    subtitle: String
+    subtitle: String,
   },
   computed: {
     displayTitle() {
       return this.title.replace(/{{index}}/, this.index);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped lang="scss">

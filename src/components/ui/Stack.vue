@@ -18,14 +18,14 @@ import Card from "@/components/ui/Card";
 
 export default {
   components: {
-    Card
+    Card,
   },
   props: {
     cards: {
       type: Array,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>
 

@@ -68,7 +68,7 @@
 
         <div
           class="pl-4 pr-2 pt-1"
-          style="font-size: 14px"
+          style="font-size: 14px;"
           v-html="data.excerpt"
         ></div>
       </div>
@@ -82,27 +82,27 @@ import moment from "moment";
 export default {
   name: "Event",
   props: ["data", "multiple"],
-  data: function() {
+  data: function () {
     return {
-      minimize: true
+      minimize: true,
     };
   },
   methods: {
     toggle() {
       this.minimize = !this.minimize;
-    }
+    },
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MMMM Do YYYY");
     },
-    formatTime: function(value) {
+    formatTime: function (value) {
       return moment(value).format("HH:mm");
     },
-    formatDateShort: function(value) {
+    formatDateShort: function (value) {
       return moment(String(value)).format("DD/MM/YY");
-    }
-  }
+    },
+  },
 };
 </script>
 

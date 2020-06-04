@@ -1,7 +1,7 @@
 <template>
   <div
     class="content_wrapper md:content_wrapper-md"
-    style="flex-direction: column"
+    style="flex-direction: column;"
   >
     <div class="hero_info">
       <div class="title_logo" v-if="getLogo(data.uploaded_logo.url)">
@@ -34,13 +34,13 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MMMM Do YYYY");
-    }
+    },
   },
-  props: ["data", "baseUrl"]
+  props: ["data", "baseUrl"],
 };
 </script>

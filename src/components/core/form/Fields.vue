@@ -15,6 +15,6 @@ import Field from "./Field";
 
 export default {
   props: { response: Object, fields: Array, next: Function },
-  components: { Field }
+  components: { Field },
 };
 </script>

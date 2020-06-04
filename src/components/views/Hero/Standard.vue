@@ -16,7 +16,7 @@
         <h1
           v-if="data.title"
           :class="getClass('title', data.style)"
-          @blur="event => onInput(event, 'title')"
+          @blur="(event) => onInput(event, 'title')"
           :style="textStyle('title', data.style)"
           v-html="data.title"
         ></h1>
@@ -29,7 +29,7 @@
       </div>
       <div
         class="hero_description"
-        @blur="event => onInput(event, 'text.content')"
+        @blur="(event) => onInput(event, 'text.content')"
         v-html="data.text"
         :style="textStyle('paragraph', data.style)"
       ></div>
@@ -53,9 +53,9 @@ import moment from "moment";
 
 export default {
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MMMM Do YYYY");
-    }
+    },
   },
   methods: {
     onInput(event, property) {
@@ -76,7 +76,7 @@ export default {
     styleObj(item) {
       var styleObj = {
         background: "#000",
-        color: "#fff"
+        color: "#fff",
       };
       if (item.background) {
         styleObj["background"] = item.background;
@@ -86,9 +86,9 @@ export default {
         styleObj["color"] = item.color;
       }
       return styleObj;
-    }
+    },
   },
-  props: ["data", "globalStyle", "event", "index"]
+  props: ["data", "globalStyle", "event", "index"],
 };
 </script>
 

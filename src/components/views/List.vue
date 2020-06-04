@@ -42,7 +42,7 @@ export default {
       slideIndex: 0,
       slideCount: 3,
       slides: [],
-      play: false
+      play: false,
     };
   },
   methods: {
@@ -84,12 +84,12 @@ export default {
       }
       if (this.autoplay && !this.interval) {
         var self = this;
-        this.interval = setInterval(function() {
+        this.interval = setInterval(function () {
           self.next();
         }, this.autoplay);
         this.play = true;
       }
-    }
+    },
   },
   created() {
     this.slides = this.custom.content.slice(0);
@@ -102,7 +102,7 @@ export default {
       this.toggle_play(this.autoplay);
     }
   },
-  props: ["custom", "display", "autoplay"]
+  props: ["custom", "display", "autoplay"],
 };
 </script>
 

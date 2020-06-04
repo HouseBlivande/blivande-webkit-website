@@ -36,7 +36,7 @@ module.exports = {
     //         "er_list",
     //         "er_list-md",
     //         "er_lead",
-    //         "er_lead-md", 
+    //         "er_lead-md",
     //         "plain_list",
     //         "plain_list-md",
     //         "swiper-container",

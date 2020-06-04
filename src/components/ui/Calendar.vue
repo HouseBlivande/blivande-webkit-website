@@ -36,7 +36,7 @@ export default {
       selected: 0,
       active: null,
       event: null,
-      events: null
+      events: null,
     };
   },
   props: ["dates", "filters", "items", "stylesheet", "globalStyle"],
@@ -69,7 +69,7 @@ export default {
       }
     },
     filterEvent(date) {
-      var event = this.events.filter(function(obj) {
+      var event = this.events.filter(function (obj) {
         return (
           moment(obj.event.start).format("YYYY-MM-DD") ==
           moment(date).format("YYYY-MM-DD")
@@ -122,18 +122,18 @@ export default {
           height: "30px",
           "font-size": "12px",
           "font-weight": "bold",
-          "border-radius": "7px"
+          "border-radius": "7px",
         };
         return obj;
       } else {
         return null;
       }
-    }
+    },
   },
   mounted() {
     this.events = this.items.filter(({ event }) => event);
 
-    var eventDates = this.events.map(obj => {
+    var eventDates = this.events.map((obj) => {
       var date = moment(obj.event.start).format("YYYY-MM-01");
       return date;
     });
@@ -152,10 +152,10 @@ export default {
     this.months = uniqueDates.map(getMonths);
   },
   created() {
-    bus.$on("clearDate", data => {
+    bus.$on("clearDate", (data) => {
       this.active = data;
     });
-  }
+  },
 };
 </script>
 

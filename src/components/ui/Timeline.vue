@@ -79,10 +79,10 @@
                       class="icon twitter"
                       :href="
                         'https://twitter.com/home?status=Check out this upcoming event: ' +
-                          item.title +
-                          ' - ' +
-                          item.url +
-                          ' #edgeryders'
+                        item.title +
+                        ' - ' +
+                        item.url +
+                        ' #edgeryders'
                       "
                       target="_blank"
                     ></a>
@@ -90,7 +90,7 @@
                       class="icon facebook"
                       :href="
                         'https://www.facebook.com/sharer/sharer.php?u=' +
-                          item.url
+                        item.url
                       "
                       target="_blank"
                     ></a>
@@ -98,9 +98,9 @@
                       class="icon email"
                       :href="
                         'mailto:?subject=Check out this upcoming event by Edgeryders&body=' +
-                          item.title +
-                          ' - ' +
-                          item.url
+                        item.title +
+                        ' - ' +
+                        item.url
                       "
                       target="_blank"
                     ></a>
@@ -144,7 +144,7 @@ export default {
       location: null,
       expand: null,
       type: null,
-      selectedDate: null
+      selectedDate: null,
     };
   },
   methods: {
@@ -159,7 +159,7 @@ export default {
     },
     getType(tags) {
       var types = this.filters;
-      var tag = tags.filter(function(tag) {
+      var tag = tags.filter(function (tag) {
         if (types[tag.name]) {
           return tag;
         } else {
@@ -169,12 +169,12 @@ export default {
       var name = tag[0].name;
       var obj = {
         name: tag[0].name,
-        color: types[name]
+        color: types[name],
       };
       return obj;
     },
     getTags(tags) {
-      let array = tags.map(function(tag) {
+      let array = tags.map(function (tag) {
         return tag.name;
       });
       return array;
@@ -194,7 +194,7 @@ export default {
         return false;
       }
     },
-    dateId: function(value) {
+    dateId: function (value) {
       return moment(value).format("YYYYMMDD");
     },
     eventColor(type) {
@@ -223,49 +223,49 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   created() {
     this.events = this.items.filter(({ event }) => event);
 
-    bus.$on("setDate", data => {
+    bus.$on("setDate", (data) => {
       this.selectedDate = data;
     });
-    bus.$on("clearDate", data => {
+    bus.$on("clearDate", (data) => {
       this.selectedDate = data;
     });
-    bus.$on("clearType", data => {
+    bus.$on("clearType", (data) => {
       this.type = data;
     });
-    bus.$on("clearSearch", data => {
+    bus.$on("clearSearch", (data) => {
       this.search = "";
       window.console.log(data);
     });
-    bus.$on("filterDate", data => {
+    bus.$on("filterDate", (data) => {
       this.selectedDate = data;
       this.type = null;
       this.location = null;
     });
-    bus.$on("filterSearch", data => {
+    bus.$on("filterSearch", (data) => {
       this.search = data;
       this.type = null;
       this.selectedDate = null;
     });
-    bus.$on("filterLocation", data => {
+    bus.$on("filterLocation", (data) => {
       this.location = data;
       this.selectedDate = null;
     });
-    bus.$on("filterType", data => {
+    bus.$on("filterType", (data) => {
       this.type = data;
     });
   },
   filters: {
-    formatTime: function(value) {
+    formatTime: function (value) {
       return moment(value).format("HH:mm");
     },
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(value).format("dddd, MMMM Do");
-    }
+    },
   },
   mounted() {
     this.created = true;
@@ -279,7 +279,7 @@ export default {
     customFont() {
       if (this.stylesheet && this.stylesheet.font) {
         return {
-          "font-family": this.stylesheet.font + " !important"
+          "font-family": this.stylesheet.font + " !important",
         };
       } else {
         return null;
@@ -290,25 +290,25 @@ export default {
 
       if (this.selectedDate != null) {
         filtered = filtered.filter(
-          e => moment(e.event.start).format("YYYYMMDD") == this.selectedDate
+          (e) => moment(e.event.start).format("YYYYMMDD") == this.selectedDate
         );
       }
 
       if (this.search != "") {
-        filtered = filtered.filter(e =>
+        filtered = filtered.filter((e) =>
           e.title.toLowerCase().includes(this.search.toLowerCase())
         );
       }
 
       if (this.location != null) {
-        filtered = filtered.filter(e => e.location == this.location);
+        filtered = filtered.filter((e) => e.location == this.location);
       }
 
       if (this.type != null) {
         var type = this.type;
         var self = this;
 
-        var test = filtered.filter(function(obj) {
+        var test = filtered.filter(function (obj) {
           var tags = self.getTags(obj.tags);
           var x = tags.includes(type.name);
           if (x) {
@@ -320,7 +320,7 @@ export default {
       }
 
       return filtered;
-    }
+    },
   },
   watch: {
     type() {
@@ -329,7 +329,7 @@ export default {
       } else {
         bus.$emit("filterType", null);
       }
-    }
+    },
   },
   props: [
     "data",
@@ -338,8 +338,8 @@ export default {
     "filters",
     "custom",
     "items",
-    "eventsdata"
-  ]
+    "eventsdata",
+  ],
 };
 </script>
 

@@ -47,7 +47,7 @@ export default {
     placeholder: String,
     half: Boolean,
     autofocus: Boolean,
-    next: Function
+    next: Function,
   },
   mounted() {
     this.handleFocus();
@@ -73,16 +73,16 @@ export default {
     },
     isFocused() {
       return document.activeElement == this.textarea;
-    }
+    },
   },
   methods: {
     handleFocus() {
       if (this.autofocus && !this.isFocused) {
         this.textarea.focus();
       }
-    }
+    },
   },
-  components: { Error }
+  components: { Error },
 };
 </script>
 

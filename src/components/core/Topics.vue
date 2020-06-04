@@ -113,7 +113,7 @@
               class="item_meta"
               v-if="
                 (view.list.display && show(view.list.display, 'favourites')) ||
-                  (view.list.display && show(view.list.display, 'replies'))
+                (view.list.display && show(view.list.display, 'replies'))
               "
             >
               <a
@@ -170,7 +170,7 @@ export default {
       full_width: false,
       reset: 0,
       ready: false,
-      activeView: ""
+      activeView: "",
     };
   },
   components: {
@@ -179,7 +179,7 @@ export default {
     Grid,
     GridItem,
     List,
-    Row
+    Row,
   },
   created() {
     this.activeView = this.getViews(this.data.views)[0];
@@ -220,7 +220,7 @@ export default {
         });
     },
     getViews(data) {
-      return data.reduce(function(result, view) {
+      return data.reduce(function (result, view) {
         if (Object.keys(view)[0] !== "text") {
           result.push(Object.keys(view)[0]);
         }
@@ -239,7 +239,7 @@ export default {
     },
     toggleView(value) {
       this.activeView = value;
-    }
+    },
   },
   watch: {
     // whenever question changes, this function will run
@@ -247,13 +247,13 @@ export default {
       this.ready = false;
       this.getTopics(newTag, "tags");
       this.reset = this.reset + 1;
-    }
+    },
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("dddd, MMMM Do YYYY");
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

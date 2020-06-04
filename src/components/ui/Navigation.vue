@@ -65,14 +65,14 @@ export default {
   props: ["anchor", "external", "open", "globalStyle", "stylesheet"],
   data() {
     return {
-      mobileMenu: false
+      mobileMenu: false,
     };
   },
   methods: {
     toggleMenu() {
       this.$emit("toggle");
-    }
-  }
+    },
+  },
 };
 </script>
 

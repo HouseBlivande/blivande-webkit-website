@@ -17,7 +17,7 @@
 <script>
 export default {
   name: "Grid",
-  props: ["data", "mq", "config"]
+  props: ["data", "mq", "config"],
 };
 </script>
 <style lang="scss">

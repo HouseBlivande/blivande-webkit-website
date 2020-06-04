@@ -82,11 +82,11 @@ export default {
   props: ["users", "topics", "display", "globalStyle", "stylesheet"],
   components: {
     Card,
-    Profile
+    Profile,
   },
   data() {
     return {
-      flip: false
+      flip: false,
     };
   },
   methods: {
@@ -104,13 +104,13 @@ export default {
       this.$nextTick(() => {
         this.$refs.content.scrollLeft += 1000;
       });
-    }
+    },
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MM/DD/YY");
-    }
-  }
+    },
+  },
 };
 </script>
 

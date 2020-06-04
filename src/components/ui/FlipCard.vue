@@ -22,9 +22,9 @@
 export default {
   name: "FlipCard",
   props: ["url"],
-  data: function() {
+  data: function () {
     return {
-      flipped: false
+      flipped: false,
     };
   },
   methods: {
@@ -33,8 +33,8 @@ export default {
     },
     flipMobile() {
       this.flipped = !this.flipped;
-    }
-  }
+    },
+  },
 };
 </script>
 

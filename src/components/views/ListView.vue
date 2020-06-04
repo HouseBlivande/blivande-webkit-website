@@ -62,7 +62,7 @@ export default {
     showItem() {
       this.slideIn = !this.slideIn;
     },
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(value).format("dddd, MMMM Do");
     },
     showDate(item, index) {
@@ -104,13 +104,13 @@ export default {
           : 0
       );
       return sorted;
-    }
+    },
   },
   data() {
     return {
       selected: 0,
       search: "",
-      slideIn: false
+      slideIn: false,
     };
   },
   computed: {
@@ -131,19 +131,19 @@ export default {
 
       if (this.search.text != "") {
         filtered = filtered.filter(
-          e =>
+          (e) =>
             e.title.toLowerCase().includes(this.search.toLowerCase()) ||
             e.excerpt.toLowerCase().includes(this.search.toLowerCase())
         );
       }
 
       return filtered;
-    }
+    },
   },
   filters: {},
   created() {
     this.selected = this.filteredItems[0];
-  }
+  },
 };
 </script>
 <style lang="scss">

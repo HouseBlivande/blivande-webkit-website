@@ -29,13 +29,13 @@ export default {
       type: null,
       locations: [],
       types: [],
-      tags: []
+      tags: [],
     };
   },
   props: ["filters", "items", "stylesheet", "globalStyle"],
   methods: {
     mapLocations() {
-      var array = this.items.map(obj => obj.location);
+      var array = this.items.map((obj) => obj.location);
       array = this.filterDuplicates(array);
       this.locations = array;
     },
@@ -56,21 +56,21 @@ export default {
     },
     mapTypes() {
       var test = [];
-      this.items.map(obj => obj.tags.map(obj => test.push(obj.name)));
+      this.items.map((obj) => obj.tags.map((obj) => test.push(obj.name)));
       var newarray = this.filterDuplicates(test);
 
       this.types = newarray;
     },
     filterDuplicates(array) {
       let unique = [...new Set(array)];
-      let new_array = unique.filter(word => word !== "call");
+      let new_array = unique.filter((word) => word !== "call");
       return new_array;
-    }
+    },
   },
   mounted() {
     this.mapTypes();
     this.mapLocations();
-    bus.$on("filterType", data => {
+    bus.$on("filterType", (data) => {
       this.type = data;
     });
   },
@@ -85,8 +85,8 @@ export default {
     },
     location() {
       bus.$emit("filterLocation", this.location);
-    }
-  }
+    },
+  },
 };
 </script>
 

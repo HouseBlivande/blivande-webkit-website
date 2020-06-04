@@ -82,7 +82,7 @@
 
 <script>
 export default {
-  props: ["custom"]
+  props: ["custom"],
 };
 </script>
 

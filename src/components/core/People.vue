@@ -28,7 +28,7 @@
       <div
         class="user_grid md:user_grid-md mx-auto pb-8"
         v-else
-        style="width: 80vw"
+        style="width: 80vw;"
       >
         <a
           class="user_avatar md:user_avatar-md"
@@ -64,7 +64,7 @@ export default {
       selected: null,
       toggle: false,
       search: "",
-      view: "custom_ngi_people"
+      view: "custom_ngi_people",
     };
   },
   methods: {
@@ -86,7 +86,7 @@ export default {
       }
     },
     setActive(value) {
-      this.selected = this.people.filter(x => x.id == value)[0];
+      this.selected = this.people.filter((x) => x.id == value)[0];
       this.toggle = !this.toggle;
     },
     toggleView(view) {
@@ -106,21 +106,21 @@ export default {
         .then(({ data }) => {
           this.people = this.getJson(data.post_stream.posts[0].cooked);
         });
-    }
+    },
   },
   computed: {
     filteredPeople() {
-      return this.people.filter(item => {
+      return this.people.filter((item) => {
         return item.name.toLowerCase().includes(this.search.toLowerCase());
       });
-    }
+    },
   },
   components: {
-    List
+    List,
   },
-  created: function() {
+  created: function () {
     this.getPeople();
-  }
+  },
 };
 </script>
 <style lang="scss">

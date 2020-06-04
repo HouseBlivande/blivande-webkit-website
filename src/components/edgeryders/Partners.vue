@@ -34,7 +34,7 @@ export default {
   methods: {
     wrapperObj() {
       var wrapperObj = {
-        maxWidth: ""
+        maxWidth: "",
       };
       if (this.stylesheet && this.stylesheet.wrapper) {
         wrapperObj["maxWidth"] = this.stylesheet.wrapper;
@@ -43,8 +43,8 @@ export default {
         wrapperObj["maxWidth"] = this.data.style.wrapper;
       }
       return wrapperObj;
-    }
+    },
   },
-  props: ["data", "stylesheet", "globalStyle"]
+  props: ["data", "stylesheet", "globalStyle"],
 };
 </script>

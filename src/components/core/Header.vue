@@ -47,18 +47,18 @@ export default {
       if (data.config && data.config.external) {
         return data.config.external;
       }
-    }
+    },
   },
   components: {
     Menu,
-    Hero
+    Hero,
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MMMM Do YYYY");
-    }
+    },
   },
-  props: ["category", "data", "baseUrl", "globalStyle", "index"]
+  props: ["category", "data", "baseUrl", "globalStyle", "index"],
 };
 </script>
 

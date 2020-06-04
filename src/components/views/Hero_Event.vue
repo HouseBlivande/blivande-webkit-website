@@ -93,15 +93,15 @@ import moment from "moment";
 
 export default {
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MMMM Do YYYY");
-    }
+    },
   },
   methods: {
     styleObj(item) {
       var styleObj = {
         background: "#000",
-        color: "#fff"
+        color: "#fff",
       };
       if (item.background) {
         styleObj["background"] = item.background;
@@ -110,8 +110,8 @@ export default {
         styleObj["color"] = item.color;
       }
       return styleObj;
-    }
+    },
   },
-  props: ["data", "globalStyle", "event"]
+  props: ["data", "globalStyle", "event"],
 };
 </script>

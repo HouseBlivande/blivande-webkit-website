@@ -33,7 +33,7 @@ export default {
   methods: {
     isNumeric(num) {
       return !isNaN(num);
-    }
+    },
   },
   created() {
     if (
@@ -53,7 +53,7 @@ export default {
     } else {
       this.content = this.data;
     }
-  }
+  },
 };
 </script>
 <style lang="scss">

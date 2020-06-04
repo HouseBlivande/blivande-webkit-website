@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "GridItem"
+  name: "GridItem",
 };
 </script>
 <style lang="scss">

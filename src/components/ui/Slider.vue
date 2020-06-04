@@ -94,11 +94,11 @@ export default {
       users: [],
       slides: [],
       currentIndex: 0,
-      currentTransition: "next"
+      currentTransition: "next",
     };
   },
   components: {
-    Profile
+    Profile,
   },
   methods: {
     show(value) {
@@ -119,7 +119,7 @@ export default {
     },
     getUser(userId) {
       if (this.users.length) {
-        return this.users.filter(user => user.id == userId)[0];
+        return this.users.filter((user) => user.id == userId)[0];
       }
     },
     clear_interval() {
@@ -131,7 +131,7 @@ export default {
     set_interval() {
       this.clear_interval();
       var self = this;
-      this.interval = setInterval(function() {
+      this.interval = setInterval(function () {
         self.changeSlide("next");
       }, this.autoplay);
       this.play = true;
@@ -147,13 +147,13 @@ export default {
       if (this.autoplay && !this.interval) {
         this.set_interval();
       }
-    }
+    },
   },
   computed: {
-    currentSlide: function() {
+    currentSlide: function () {
       return this.slides[Math.abs(this.currentIndex) % this.slides.length];
     },
-    cooked: function() {
+    cooked: function () {
       if (!this.currentSlide) {
         return "";
       }
@@ -162,7 +162,7 @@ export default {
         'class="lightbox-wrapper"',
         'class="lightbox-wrapper hidden"'
       );
-    }
+    },
   },
   created() {
     if (this.data.length) {
@@ -175,11 +175,11 @@ export default {
     }
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("dddd, MMMM DD YYYY");
-    }
+    },
   },
-  props: ["autoplay", "data", "display", "config", "stylesheet", "globalStyle"]
+  props: ["autoplay", "data", "display", "config", "stylesheet", "globalStyle"],
 };
 </script>
 

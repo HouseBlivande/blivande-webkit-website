@@ -34,14 +34,14 @@ export default {
   components: {
     EventView,
     CategoryView,
-    BlivandeView
+    BlivandeView,
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MMMM Do YYYY");
-    }
+    },
   },
-  props: ["category", "data", "baseUrl", "globalStyle", "index"]
+  props: ["category", "data", "baseUrl", "globalStyle", "index"],
 };
 </script>
 

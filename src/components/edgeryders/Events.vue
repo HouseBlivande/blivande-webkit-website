@@ -16,7 +16,7 @@
           class="toggle"
           :class="[
             Object.keys(view)[0],
-            { active: activeView == Object.keys(view)[0] }
+            { active: activeView == Object.keys(view)[0] },
           ]"
           @click="toggleView(Object.keys(view)[0])"
           :key="index"
@@ -158,8 +158,8 @@
             class="item_date"
             v-if="
               item.event &&
-                show('time', view.list.display) &&
-                !show('date', view.list.display)
+              show('time', view.list.display) &&
+              !show('date', view.list.display)
             "
           >
             {{ item.event.start | formatTime }}
@@ -223,8 +223,8 @@ export default {
       search: {
         text: "",
         filters: [],
-        date: null
-      }
+        date: null,
+      },
     };
   },
   components: {
@@ -232,7 +232,7 @@ export default {
     GridItem,
     List,
     TextView,
-    Calendar
+    Calendar,
   },
   methods: {
     activePopup(value) {
@@ -254,7 +254,7 @@ export default {
     },
     titleObj() {
       var titleObj = {
-        maxWidth: ""
+        maxWidth: "",
       };
       if (this.stylesheet && this.stylesheet.wrapper) {
         titleObj["maxWidth"] = this.stylesheet.title;
@@ -301,8 +301,8 @@ export default {
     },
     getEventTags(events) {
       var array = [];
-      events.map(obj => {
-        return obj.tags.map(tag => {
+      events.map((obj) => {
+        return obj.tags.map((tag) => {
           if (!array.includes(tag.name) && this.data.config.filters[tag.name]) {
             array.push(tag.name);
           }
@@ -312,7 +312,7 @@ export default {
     },
     getTags(obj) {
       var array = [];
-      obj.tags.map(tag => {
+      obj.tags.map((tag) => {
         if (!array.includes(tag.name) && this.data.config.filters[tag.name]) {
           array.push(tag.name);
         }
@@ -320,7 +320,7 @@ export default {
       return array;
     },
     getTag(value) {
-      return this.filters.filter(obj => obj.name == value)[0];
+      return this.filters.filter((obj) => obj.name == value)[0];
     },
     getEventFilters() {
       var colors = ["turquoise", "yellow", "red"];
@@ -331,7 +331,7 @@ export default {
       for (i = 0; i < tags.length; i++) {
         var obj = {
           name: tags[i],
-          color: this.data.filters[tags[i]] || colors[i]
+          color: this.data.filters[tags[i]] || colors[i],
         };
         array.push(obj);
       }
@@ -349,7 +349,7 @@ export default {
         });
     },
     isActiveFilter(obj) {
-      return this.search.filters.findIndex(tag => tag.name == obj.name);
+      return this.search.filters.findIndex((tag) => tag.name == obj.name);
     },
     setFilter(obj) {
       var index = this.isActiveFilter(obj);
@@ -377,15 +377,15 @@ export default {
     },
     formatSearchDate(value) {
       return moment(value).format("DD MMMM YYYY");
-    }
+    },
   },
   created() {
     this.getEvents(this.data.config.tags.event);
     this.activeView = Object.keys(this.data.views[0])[0];
-    bus.$on("setFilterDate", data => {
+    bus.$on("setFilterDate", (data) => {
       this.setDate(data);
     });
-    bus.$on("clearDate", data => {
+    bus.$on("clearDate", (data) => {
       this.search.date = data;
     });
   },
@@ -395,7 +395,7 @@ export default {
 
       if (this.search.date != null) {
         filtered = filtered.filter(
-          e =>
+          (e) =>
             e.event &&
             moment(e.event.start).format("YYYYMMDD") ==
               moment(this.search.date).format("YYYYMMDD")
@@ -404,7 +404,7 @@ export default {
 
       if (this.search.text != "") {
         filtered = filtered.filter(
-          e =>
+          (e) =>
             e.title.toLowerCase().includes(this.search.text.toLowerCase()) ||
             e.excerpt.toLowerCase().includes(this.search.text.toLowerCase())
         );
@@ -412,10 +412,10 @@ export default {
 
       if (this.search.filters.length > 0) {
         var self = this;
-        var filters = this.search.filters.map(obj => obj.name);
-        var filter = filtered.filter(function(obj) {
+        var filters = this.search.filters.map((obj) => obj.name);
+        var filter = filtered.filter(function (obj) {
           var tags = self.getTags(obj);
-          var tag_filter = tags.filter(value => filters.includes(value));
+          var tag_filter = tags.filter((value) => filters.includes(value));
           if (tag_filter.length) {
             return obj;
           }
@@ -425,16 +425,16 @@ export default {
       }
 
       return filtered;
-    }
+    },
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("dddd, MMMM Do YYYY");
     },
-    formatTime: function(value) {
+    formatTime: function (value) {
       return moment(String(value)).format("HH:mm a");
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

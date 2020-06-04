@@ -105,7 +105,7 @@ export default {
       componentKey: 0,
       bio: null,
       allusers: null,
-      filtered_users: false
+      filtered_users: false,
     };
   },
   components: { Stack, Row },
@@ -143,11 +143,11 @@ export default {
     },
     setActive(index) {
       this.selected = index;
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.getUsers(this.custom.category);
-  }
+  },
 };
 </script>
 <style lang="scss">

@@ -16,7 +16,7 @@ export default {
   name: "Search",
   data() {
     return {
-      search: ""
+      search: "",
     };
   },
   watch: {
@@ -24,9 +24,9 @@ export default {
       bus.$emit("clearDate", null);
       bus.$emit("clearType", null);
       bus.$emit("filterSearch", this.search);
-    }
+    },
   },
-  props: ["stylesheet", "globalStyle"]
+  props: ["stylesheet", "globalStyle"],
 };
 </script>
 

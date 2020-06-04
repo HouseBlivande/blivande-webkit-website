@@ -120,7 +120,7 @@ export default {
     },
     validateForm() {
       var array = [];
-      this.data.fields.forEach(field => {
+      this.data.fields.forEach((field) => {
         if (field.required && this.form[field.id] == "") {
           array.push(field.id);
         }
@@ -138,9 +138,9 @@ export default {
       const data = {
         records: [
           {
-            fields: ""
-          }
-        ]
+            fields: "",
+          },
+        ],
       };
 
       data["records"][0]["fields"] = this.form;
@@ -148,8 +148,8 @@ export default {
       let axiosConfig = {
         headers: {
           Authorization: "Bearer keyocggSHfh6E9gSg",
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       };
 
       axios
@@ -161,15 +161,15 @@ export default {
           data,
           axiosConfig
         )
-        .then(function(response) {
+        .then(function (response) {
           window.console.log(response);
           self.submitted = true;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           window.console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">

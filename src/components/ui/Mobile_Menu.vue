@@ -26,9 +26,9 @@ export default {
   methods: {
     toggleMenu() {
       this.$emit("toggle");
-    }
+    },
   },
-  props: ["open", "data"]
+  props: ["open", "data"],
 };
 </script>
 

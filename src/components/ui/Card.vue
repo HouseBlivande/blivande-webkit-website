@@ -4,7 +4,7 @@
     ref="interactElement"
     :class="{
       isAnimating: isInteractAnimating,
-      isCurrent: isCurrent
+      isCurrent: isCurrent,
     }"
     class="card"
     :style="{ transform: transformString }"
@@ -33,18 +33,18 @@ export default {
     interactOutOfSightXCoordinate: 500,
     interactOutOfSightYCoordinate: 600,
     interactYThreshold: 150,
-    interactXThreshold: 100
+    interactXThreshold: 100,
   },
 
   props: {
     item: {
       type: String,
-      required: true
+      required: true,
     },
     isCurrent: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
@@ -55,8 +55,8 @@ export default {
       interactPosition: {
         x: 0,
         y: 0,
-        rotation: 0
-      }
+        rotation: 0,
+      },
     };
   },
 
@@ -68,7 +68,7 @@ export default {
       }
 
       return null;
-    }
+    },
   },
 
   mounted() {
@@ -79,10 +79,10 @@ export default {
         this.isInteractAnimating = false;
       },
 
-      onmove: event => {
+      onmove: (event) => {
         const {
           interactMaxRotation,
-          interactXThreshold
+          interactXThreshold,
         } = this.$options.static;
         const x = this.interactPosition.x + event.dx;
         const y = this.interactPosition.y + event.dy;
@@ -105,7 +105,7 @@ export default {
         else if (x < -interactXThreshold) this.playCard(REJECT_CARD);
         else if (y > interactYThreshold) this.playCard(SKIP_CARD);
         else this.resetCardPosition();
-      }
+      },
     });
   },
 
@@ -124,7 +124,7 @@ export default {
       const {
         interactOutOfSightXCoordinate,
         interactOutOfSightYCoordinate,
-        interactMaxRotation
+        interactMaxRotation,
       } = this.$options.static;
 
       this.interactUnsetElement();
@@ -133,20 +133,20 @@ export default {
         case ACCEPT_CARD:
           this.interactSetPosition({
             x: interactOutOfSightXCoordinate,
-            rotation: interactMaxRotation
+            rotation: interactMaxRotation,
           });
           this.$emit(ACCEPT_CARD);
           break;
         case REJECT_CARD:
           this.interactSetPosition({
             x: -interactOutOfSightXCoordinate,
-            rotation: -interactMaxRotation
+            rotation: -interactMaxRotation,
           });
           this.$emit(REJECT_CARD);
           break;
         case SKIP_CARD:
           this.interactSetPosition({
-            y: interactOutOfSightYCoordinate
+            y: interactOutOfSightYCoordinate,
           });
           this.$emit(SKIP_CARD);
           break;
@@ -167,13 +167,13 @@ export default {
 
     resetCardPosition() {
       this.interactSetPosition({ x: 0, y: 0, rotation: 0 });
-    }
+    },
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MM/DD/YY");
-    }
-  }
+    },
+  },
 };
 </script>
 

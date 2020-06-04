@@ -12,7 +12,7 @@ export default {
   props: {
     index: Number,
     maxIndex: Number,
-    mobile: Boolean
+    mobile: Boolean,
   },
   computed: {
     className() {
@@ -23,8 +23,8 @@ export default {
     },
     dots() {
       return [...Array(this.maxIndex).keys()];
-    }
-  }
+    },
+  },
 };
 </script>
 

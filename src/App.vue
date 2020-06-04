@@ -43,7 +43,7 @@ export default {
       stylesheet: null,
       openMenu: false,
       openConfig: null,
-      view: "configure"
+      view: "configure",
     };
   },
   components: {
@@ -60,7 +60,7 @@ export default {
     partners,
     edgeryders,
     custom_form,
-    terms
+    terms,
   },
   created() {
     this.getData();
@@ -72,7 +72,7 @@ export default {
   mounted() {},
   methods: {
     getSectionData(type) {
-      return this.sections.find(section => section.type === type) || {};
+      return this.sections.find((section) => section.type === type) || {};
     },
     toggleMenu() {
       this.openMenu = !this.openMenu;
@@ -83,9 +83,9 @@ export default {
       } else {
         this.openConfig = value;
       }
-    }
+    },
   },
-  computed: {}
+  computed: {},
 };
 </script>
 <style lang="scss">

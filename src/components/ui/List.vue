@@ -19,7 +19,7 @@
           class="item_entry"
           :class="{
             active: selected && item[filter] == selected[filter],
-            new_date: showDate(item, index)
+            new_date: showDate(item, index),
           }"
           @click="setActive(item[filter])"
         >
@@ -60,9 +60,9 @@
             class="social twitter"
             :href="
               'https://twitter.com/intent/tweet?url=' +
-                selected[url] +
-                '&text=' +
-                selected[title]
+              selected[url] +
+              '&text=' +
+              selected[title]
             "
           ></a>
           <a
@@ -128,19 +128,19 @@ export default {
     "search",
     "url",
     "type",
-    "share"
+    "share",
   ],
-  data: function() {
+  data: function () {
     return {
       active: false,
       selected: null,
       searchValue: "",
-      active_search: false
+      active_search: false,
     };
   },
   methods: {
     setActive(val) {
-      this.selected = this.items.filter(x => x[this.filter] == val)[0];
+      this.selected = this.items.filter((x) => x[this.filter] == val)[0];
       this.toggleList();
     },
     removeActive() {
@@ -155,10 +155,10 @@ export default {
     toggleSearch() {
       this.active_search = !this.active_search;
     },
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(value).format("dddd, MMMM Do");
     },
-    formatTime: function(value) {
+    formatTime: function (value) {
       return moment(value).format("HH:mm A");
     },
     showDate(item, index) {
@@ -176,17 +176,17 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   computed: {
     filteredList() {
-      return this.items.filter(item => {
+      return this.items.filter((item) => {
         return item[this.title]
           .toLowerCase()
           .includes(this.searchValue.toLowerCase());
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

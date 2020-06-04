@@ -22,14 +22,14 @@ export default {
   methods: {},
   components: {
     Standard,
-    Blivande
+    Blivande,
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("MMMM Do YYYY");
-    }
+    },
   },
-  props: ["data", "config", "stylesheet", "baseUrl", "globalStyle"]
+  props: ["data", "config", "stylesheet", "baseUrl", "globalStyle"],
 };
 </script>
 
