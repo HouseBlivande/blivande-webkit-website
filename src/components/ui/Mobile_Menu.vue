@@ -1,7 +1,7 @@
 <template>
-  <div class="mobile_menu" :class="{'active': open}" v-if="$mq == 'sm'">
-      <div class="mobile_menu_container">
-        <scrollactive
+  <div class="mobile_menu" :class="{ active: open }" v-if="$mq == 'sm'">
+    <div class="mobile_menu_container">
+      <scrollactive
         class="mobile_nav"
         active-class="active"
         :offset="80"
@@ -24,11 +24,11 @@
 <script>
 export default {
   methods: {
-    toggleMenu(){
-      this.$emit('toggle');
-    }
+    toggleMenu() {
+      this.$emit("toggle");
+    },
   },
-  props: ["open", "data"]
+  props: ["open", "data"],
 };
 </script>
 
@@ -43,10 +43,10 @@ export default {
   top: 60px;
   background: #fafafa;
   transform: scale(0);
-  transition: transform .3s ease;
+  transition: transform 0.3s ease;
   &.active {
     transform: scale(1);
-    transition: transform .45s ease;
+    transition: transform 0.45s ease;
   }
   .mobile_nav {
     display: flex;

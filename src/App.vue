@@ -1,16 +1,22 @@
 <template>
-    <div class="site_container">
-      <div v-if="globalStyleSheet">
-        <div v-for="(section, index) in sections" :key="index" :id="section.id">
-          <component v-bind:is="section.type" :key="componentKey + index" :baseUrl="$globals.config.baseUrl" :globalStyle="globalStyleSheet" :data="section" :index="index"></component>
-        </div>
+  <div class="site_container">
+    <div v-if="globalStyleSheet">
+      <div v-for="(section, index) in sections" :key="index" :id="section.id">
+        <component
+          v-bind:is="section.type"
+          :key="componentKey + index"
+          :baseUrl="$globals.config.baseUrl"
+          :globalStyle="globalStyleSheet"
+          :data="section"
+          :index="index"
+        ></component>
       </div>
     </div>
+  </div>
 </template>
 
 <script src="js-yaml.min.js"></script>
 <script>
-
 import Nav from "@/components/ui/Navigation.vue";
 import MobileMenu from "@/components/ui/Mobile_Menu.vue";
 
@@ -37,7 +43,7 @@ export default {
       stylesheet: null,
       openMenu: false,
       openConfig: null,
-      view: 'configure'
+      view: "configure",
     };
   },
   components: {
@@ -54,95 +60,92 @@ export default {
     partners,
     edgeryders,
     custom_form,
-    terms
+    terms,
   },
   created() {
-   this.getData();
-    
+    this.getData();
+
     // this.sections.map(section => {
     //   return Vue.component(section.type, require(section.path + '.vue'))
     // });
   },
-  mounted() {
-
-  },
+  mounted() {},
   methods: {
     getSectionData(type) {
-      return this.sections.find(section => section.type === type) || {};
+      return this.sections.find((section) => section.type === type) || {};
     },
     toggleMenu() {
       this.openMenu = !this.openMenu;
     },
     toggleConfig(value) {
       if (this.openConfig == value) {
-        this.openConfig = null
+        this.openConfig = null;
       } else {
         this.openConfig = value;
       }
-    }
+    },
   },
-  computed: {
-  }
+  computed: {},
 };
 </script>
 <style lang="scss">
 .sidebar_container {
   @apply relative;
-    width: 450px;
-    height: 100vh;
-    @apply overflow-scroll bg-gray-100 border-r;
-    .sidebar_options {
-      @apply flex w-full border-t border-b;
-      .button {
-        @apply w-full text-center font-bold p-4;
-        &:first-child {
-          @apply border-r;
-        }
-        &.active {
-          @apply bg-gray-200;
-        }
-        &:hover {
-          cursor: pointer;
-          @apply bg-gray-100;
+  width: 450px;
+  height: 100vh;
+  @apply overflow-scroll bg-gray-100 border-r;
+  .sidebar_options {
+    @apply flex w-full border-t border-b;
+    .button {
+      @apply w-full text-center font-bold p-4;
+      &:first-child {
+        @apply border-r;
+      }
+      &.active {
+        @apply bg-gray-200;
+      }
+      &:hover {
+        cursor: pointer;
+        @apply bg-gray-100;
+      }
+    }
+  }
+  .container {
+    @apply p-4;
+    h4 {
+      @apply relative text-xl font-bold border-b border-gray-300 pb-2 mb-2;
+      &:hover {
+        cursor: pointer;
+      }
+      &:before {
+        content: "";
+        display: inline-block;
+        width: 0;
+        height: 0;
+        position: relative;
+        top: -1px;
+        border-style: solid;
+        margin: 0 10px 0 2px;
+        border-width: 4.5px 0 4.5px 6px;
+        border-color: transparent transparent transparent rgba(0, 0, 0, 0.2);
+        transform: rotate(0deg);
+        transition: transform 0.5s ease;
+      }
+      &.active {
+        &:before {
+          transform: rotate(90deg);
+          border-color: transparent transparent transparent #000;
         }
       }
     }
-    .container {
-      @apply p-4 ;
-      h4 {
-        @apply relative text-xl font-bold border-b border-gray-300 pb-2 mb-2;
-        &:hover {
-          cursor: pointer;
-        }
-       &:before {
-          content: "";
-          display: inline-block;
-          width: 0;
-          height: 0;
-          position: relative;
-          top: -1px;
-          border-style: solid;
-          margin: 0 10px 0 2px;
-          border-width: 4.5px 0 4.5px 6px;
-          border-color: transparent transparent transparent rgba(0,0,0,0.2);
-          transform: rotate(0deg);
-          transition: transform .5s ease;
-        }
-        &.active {
-          &:before {
-            transform: rotate(90deg);
-            border-color: transparent transparent transparent #000;
-          }
-        }
-      }
-      h5 {
-         @apply text-sm font-bold  mb-2;
-      }
-      &.json {
-        pre {
+    h5 {
+      @apply text-sm font-bold  mb-2;
+    }
+    &.json {
+      pre {
         word-wrap: break-word;
-        }
       }
+    }
   }
 }
 .edit_container {
@@ -155,16 +158,16 @@ export default {
   max-height: 0px;
 
   overflow: hidden;
-  transition: max-height .3s ease;
+  transition: max-height 0.3s ease;
   &.active {
     max-height: 1500px;
-      @apply pb-4;
+    @apply pb-4;
   }
 }
 .edit {
   @apply flex w-full justify-between items-center border-b overflow-hidden;
   p {
-    @apply bg-gray-100 px-3 py-2 border-r h-full font-bold; 
+    @apply bg-gray-100 px-3 py-2 border-r h-full font-bold;
     flex-shrink: 0;
     min-width: 90px;
     font-size: 12px;
@@ -182,16 +185,16 @@ export default {
   &.select {
     border: none !important;
   }
-  
+
   &.textarea {
     @apply flex-col items-start;
     p {
-      @apply text-left border-none; 
+      @apply text-left border-none;
     }
     textarea {
       @apply p-2 w-full;
-      min-height: 120px; 
-       font-size: 12px;
+      min-height: 120px;
+      font-size: 12px;
     }
   }
 }
@@ -203,4 +206,3 @@ export default {
   overflow-x: hidden;
 }
 </style>
-

@@ -37,7 +37,7 @@ export default {
     nextTitle: String,
     nextUrl: String,
     index: Number,
-    maxIndex: Number
+    maxIndex: Number,
   },
   computed: {
     allowBack() {
@@ -45,9 +45,9 @@ export default {
     },
     allowNext() {
       return this.next && this.nextText;
-    }
+    },
   },
-  components: { Progress }
+  components: { Progress },
 };
 </script>
 

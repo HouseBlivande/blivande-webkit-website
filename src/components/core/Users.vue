@@ -81,7 +81,10 @@
           >
           <span v-else> @{{ allusers[selected].username }} </span>
         </a>
-        <div class="user_bio md:user_bio-md" v-html="allusers[selected].bio_raw"></div>
+        <div
+          class="user_bio md:user_bio-md"
+          v-html="allusers[selected].bio_raw"
+        ></div>
       </div>
     </div>
   </div>
@@ -102,7 +105,7 @@ export default {
       componentKey: 0,
       bio: null,
       allusers: null,
-      filtered_users: false
+      filtered_users: false,
     };
   },
   components: { Stack, Row },
@@ -131,25 +134,25 @@ export default {
       }
     },
     getUsers() {
-      axios.get(
-        `${this.baseUrl}/webkit_components/users.json?per=500`
-      ).then(({ data }) => {
-        this.allusers = data.filter(({ bio_raw }) => bio_raw);
-        this.visibleCards = this.users;
-      });
+      axios
+        .get(`${this.baseUrl}/webkit_components/users.json?per=500`)
+        .then(({ data }) => {
+          this.allusers = data.filter(({ bio_raw }) => bio_raw);
+          this.visibleCards = this.users;
+        });
     },
     setActive(index) {
       this.selected = index;
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.getUsers(this.custom.category);
-  }
+  },
 };
 </script>
 <style lang="scss">
 // @import "../assets/index.scss";
 .hide {
-  display: none
+  display: none;
 }
 </style>

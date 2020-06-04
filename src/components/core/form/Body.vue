@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  props: { body: String }
+  props: { body: String },
 };
 </script>
 

@@ -11,23 +11,23 @@ export const bus = new Vue();
 
 export const globalStore = new Vue({
   data: {
-    globalvar: 'global hello world',
-    ready: false
-  }
+    globalvar: "global hello world",
+    ready: false,
+  },
 });
 Vue.prototype.$globals = globalStore;
 
-Vue.mixin(utils); 
+Vue.mixin(utils);
 
 Vue.use(VueMq, {
-	breakpoints: {
-		sm: 450,
-		md: Infinity
-	}
+  breakpoints: {
+    sm: 450,
+    md: Infinity,
+  },
 });
 Vue.use(VueScrollactive);
 Vue.use(Vue2TouchEvents);
 
 Vue.config.productionTip = false;
 
-new Vue({ render: h => h(App) }).$mount("#app");
+new Vue({ render: (h) => h(App) }).$mount("#app");

@@ -2,26 +2,36 @@
   <header>
     <div class="menu md:pr-2">
       <span class="logo">
-        <svg viewBox='0 0 500 500' version='1' xmlns='http://www.w3.org/2000/svg'><path fill='orangered' d='M0 250a250 250 0 1 1 500 0 250 250 0 0 1-500 0zm250 183V250H67a183 183 0 1 1 183 183z' fill-rule='evenodd'/></svg>
-      </span>
-        <scrollactive
-          active-class="active"
-          :offset="80"
-          :duration="800"
-          class="nav"
-          bezier-easing-value=".5,0,.35,1"
-          :style="textStyle('paragraph')"
-          v-if="$mq == 'md'"
+        <svg
+          viewBox="0 0 500 500"
+          version="1"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <a
-            class="nav-item scrollactive-item"
-            :style="hoverStyle()"
-            :href="item.url"
-            v-for="item in anchor"
-            :key="item.text"
-            >{{ item.text }}</a
-          >
-           <a
+          <path
+            fill="orangered"
+            d="M0 250a250 250 0 1 1 500 0 250 250 0 0 1-500 0zm250 183V250H67a183 183 0 1 1 183 183z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </span>
+      <scrollactive
+        active-class="active"
+        :offset="80"
+        :duration="800"
+        class="nav"
+        bezier-easing-value=".5,0,.35,1"
+        :style="textStyle('paragraph')"
+        v-if="$mq == 'md'"
+      >
+        <a
+          class="nav-item scrollactive-item"
+          :style="hoverStyle()"
+          :href="item.url"
+          v-for="item in anchor"
+          :key="item.text"
+          >{{ item.text }}</a
+        >
+        <a
           class="nav-item external"
           :style="hoverStyle()"
           :href="item.url"
@@ -29,9 +39,14 @@
           :key="item.text"
           >{{ item.text }}</a
         >
-        </scrollactive>
+      </scrollactive>
 
-      <div class="hamburger" @click="toggleMenu" :class="{'active': open}" v-if="$mq == 'sm'">
+      <div
+        class="hamburger"
+        @click="toggleMenu"
+        :class="{ active: open }"
+        v-if="$mq == 'sm'"
+      >
         <span :style="uiStyle('highlight', stylesheet)"></span>
         <span :style="uiStyle('highlight', stylesheet)"></span>
         <span :style="uiStyle('highlight', stylesheet)"></span>
@@ -50,14 +65,14 @@ export default {
   props: ["anchor", "external", "open", "globalStyle", "stylesheet"],
   data() {
     return {
-      mobileMenu: false
-    }
+      mobileMenu: false,
+    };
   },
   methods: {
-    toggleMenu(){
-      this.$emit('toggle');
-    }
-  }
+    toggleMenu() {
+      this.$emit("toggle");
+    },
+  },
 };
 </script>
 
@@ -130,12 +145,12 @@ export default {
     height: 55%;
   }
   svg {
-  height: 50%;
-  width: 30px;
-}
+    height: 50%;
+    width: 30px;
+  }
   &.edgeryders {
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' version='1' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='orangered' d='M0 250a250 250 0 1 1 500 0 250 250 0 0 1-500 0zm250 183V250H67a183 183 0 1 1 183 183z' fill-rule='evenodd'/%3E%3C/svg%3E")
-    no-repeat center #fafafa;
+      no-repeat center #fafafa;
     background-size: 45%;
     min-width: 65px;
     padding: 0 50px 0 20px;
@@ -150,7 +165,7 @@ export default {
   top: 20px;
   right: 20px;
   transform: rotate(0deg);
-  transition: .5s ease-in-out;
+  transition: 0.5s ease-in-out;
   cursor: pointer;
   span {
     display: block;
@@ -162,7 +177,7 @@ export default {
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
-    transition: .25s ease-in-out;
+    transition: 0.25s ease-in-out;
     &:nth-child(1) {
       top: 0px;
     }
@@ -197,5 +212,4 @@ export default {
     }
   }
 }
-
 </style>

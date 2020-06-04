@@ -5,7 +5,6 @@
     class="pt-1"
     :style="elementStyle(stylesheet, 'wrapper')"
   >
-
     <div class="flex justify-end mb-4" v-if="show('arrows')">
       <div class="toggle_menu mr-6 md:flex md:mr-0">
         <div
@@ -21,31 +20,65 @@
       </div>
     </div>
 
-   <transition-group tag="div" class="slider md:slider-md" :class="{ 'slider-md': $mq == 'md' }" :name="currentTransition" mode="out-in">
+    <transition-group
+      tag="div"
+      class="slider md:slider-md"
+      :class="{ 'slider-md': $mq == 'md' }"
+      :name="currentTransition"
+      mode="out-in"
+    >
       <div v-for="number in [currentIndex]" :key="number" class="slide">
         <div class="slider_container">
-        <div class="item_image w-full" :style="{ background: 'url(' + currentSlide.image_url + ')' }">
-        </div>
-        <div class="w-full md:p-6 bg-white flex items-start flex-col overflow-scroll md:overflow-auto">
+          <div
+            class="item_image w-full"
+            :style="{ background: 'url(' + currentSlide.image_url + ')' }"
+          ></div>
+          <div
+            class="w-full md:p-6 bg-white flex items-start flex-col overflow-scroll md:overflow-auto"
+          >
             <div class="item_title" v-if="show('title') || show('date')">
-              <a v-if="show('title')" :href="getPermalink(currentSlide.slug)" target="_blank">
+              <a
+                v-if="show('title')"
+                :href="getPermalink(currentSlide.slug)"
+                target="_blank"
+              >
                 {{ currentSlide.title }}
               </a>
               <p class="item_date" v-if="show('date')">
                 {{ currentSlide.created_at | formatDate }}
               </p>
             </div>
-          <div class="slide_excerpt md:slide_excerpt-md" v-html="currentSlide.excerpt"></div>
-          <div class="flex items-center item_meta">
-            <a class="slide_link" v-if="show('link')" :href="getPermalink(currentSlide.slug)" target="_blank">Read more</a>
-            <a class="item_favs" v-if="show('favourites') && currentSlide.like_count > 0" :href="getPermalink(currentSlide.slug)" target="_blank">{{currentSlide.like_count}}</a>
-            <a class="item_replies" v-if="show('replies') && currentSlide.reply_count > 0" :href="getPermalink(currentSlide.slug)" target="_blank">{{currentSlide.reply_count}}</a>
- </div>
-        </div>
+            <div
+              class="slide_excerpt md:slide_excerpt-md"
+              v-html="currentSlide.excerpt"
+            ></div>
+            <div class="flex items-center item_meta">
+              <a
+                class="slide_link"
+                v-if="show('link')"
+                :href="getPermalink(currentSlide.slug)"
+                target="_blank"
+                >Read more</a
+              >
+              <a
+                class="item_favs"
+                v-if="show('favourites') && currentSlide.like_count > 0"
+                :href="getPermalink(currentSlide.slug)"
+                target="_blank"
+                >{{ currentSlide.like_count }}</a
+              >
+              <a
+                class="item_replies"
+                v-if="show('replies') && currentSlide.reply_count > 0"
+                :href="getPermalink(currentSlide.slug)"
+                target="_blank"
+                >{{ currentSlide.reply_count }}</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </transition-group>
-
   </div>
 </template>
 
@@ -59,29 +92,29 @@ export default {
       users: [],
       slides: [],
       currentIndex: 0,
-      currentTransition: 'next'
+      currentTransition: "next",
     };
   },
-  components: {
-  },
+  components: {},
   methods: {
     show(value) {
       if (this.display) {
         return this.display.includes(value);
       } else {
-        return true
+        return true;
       }
     },
     next() {
-      this.changeSlide('next');
+      this.changeSlide("next");
       this.set_interval();
     },
     back() {
-      this.changeSlide('back');
+      this.changeSlide("back");
       this.set_interval();
     },
     changeSlide(dir) {
-      this.currentIndex = dir === 'next' ? this.currentIndex + 1 : this.currentIndex - 1;
+      this.currentIndex =
+        dir === "next" ? this.currentIndex + 1 : this.currentIndex - 1;
       this.currentTransition = dir;
     },
     clear_interval() {
@@ -93,8 +126,8 @@ export default {
     set_interval() {
       this.clear_interval();
       var self = this;
-      this.interval = setInterval(function() {
-        self.changeSlide('next');
+      this.interval = setInterval(function () {
+        self.changeSlide("next");
       }, this.config.autoplay);
       this.play = true;
     },
@@ -104,28 +137,29 @@ export default {
         this.clear_interval();
       }
       if (this.autoplay && !this.interval) {
-        this.set_interval()
+        this.set_interval();
       }
-    }
+    },
   },
   computed: {
-    currentSlide: function() {
+    currentSlide: function () {
       return this.slides[Math.abs(this.currentIndex) % this.slides.length];
     },
-    cooked: function() {
-      if (!this.currentSlide) { return ""; }
+    cooked: function () {
+      if (!this.currentSlide) {
+        return "";
+      }
 
       return this.currentSlide.cooked.replace(
         'class="lightbox-wrapper"',
         'class="lightbox-wrapper hidden"'
-      )
-    }
+      );
+    },
   },
   created() {
     if (this.data.length) {
       this.slides = this.data.slice(0);
-    }
-    else if (this.data.users && this.data.users.length) {
+    } else if (this.data.users && this.data.users.length) {
       this.users = this.data.users.slice(0);
     }
     if (this.autoplay != undefined) {
@@ -133,18 +167,16 @@ export default {
     }
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("dddd, MMMM DD YYYY");
-    }
+    },
   },
-  props: ["data", "mq", "config", "display", "stylesheet"]
+  props: ["data", "mq", "config", "display", "stylesheet"],
 };
 </script>
 
 <style lang="scss" scoped>
-
-
-.slider{
+.slider {
   overflow: hidden;
   position: relative;
   min-height: 36rem;
@@ -187,10 +219,8 @@ export default {
   top: 0;
   left: 0;
   bottom: 0;
-  right:0;
+  right: 0;
 }
-
-
 
 .slide_excerpt {
   margin-top: 10px;
@@ -200,7 +230,7 @@ export default {
 
 .slide_link {
   @apply py-3 px-3 pr-3 font-bold text-sm m-0 ml-0 rounded-none;
-   &:hover {
+  &:hover {
     background-color: #efefef;
   }
 }
@@ -212,9 +242,10 @@ export default {
 
 .item_favs {
   @apply border-l border-gray-200 font-bold mt-0 p-3 pl-6 pr-4 text-sm;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
   text-decoration: none !important;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45.8 54.7'%3E%3Cpath fill='rgba(0,0,0,0.7)' d='M9.6 27.3a2.1 2.1 0 01.6 1.9L8 41.3a2 2 0 003 2.2l10.9-5.8a2.1 2.1 0 012 0l10.9 5.8a2 2 0 003-2.2l-2.1-12.1a2.1 2.1 0 01.6-2l8.9-8.5a2.1 2.1 0 00-1.2-3.6l-12.2-1.6a2.1 2.1 0 01-1.6-1.2L24.8 1.2a2.1 2.1 0 00-3.8 0l-5.3 11.1a2.1 2.1 0 01-1.7 1.2L1.8 15a2.1 2.1 0 00-1.2 3.6z' data-name='Calque 2'/%3E%3C/svg%3E") no-repeat 15px 56%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 45.8 54.7'%3E%3Cpath fill='rgba(0,0,0,0.7)' d='M9.6 27.3a2.1 2.1 0 01.6 1.9L8 41.3a2 2 0 003 2.2l10.9-5.8a2.1 2.1 0 012 0l10.9 5.8a2 2 0 003-2.2l-2.1-12.1a2.1 2.1 0 01.6-2l8.9-8.5a2.1 2.1 0 00-1.2-3.6l-12.2-1.6a2.1 2.1 0 01-1.6-1.2L24.8 1.2a2.1 2.1 0 00-3.8 0l-5.3 11.1a2.1 2.1 0 01-1.7 1.2L1.8 15a2.1 2.1 0 00-1.2 3.6z' data-name='Calque 2'/%3E%3C/svg%3E")
+    no-repeat 15px 56%;
   background-size: 14px;
   padding-left: 35px;
   &:hover {
@@ -224,9 +255,10 @@ export default {
 
 .item_replies {
   @apply border-l border-gray-200 font-bold p-3 pl-6 pr-4 text-sm;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
   text-decoration: none !important;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 512 640'%3E%3Cpath fill='rgba(0,0,0,0.7)' d='M512 396v26c-3 7-5 14-11 19-18 14-43 7-52-15-9-24-26-39-48-50-30-15-63-21-96-23l-78-1a23 23 0 00-3 0v62a39 39 0 01-2 11c-6 22-34 33-55 12L15 284c-7-6-13-13-15-22v-12c2-9 8-16 15-22l87-87 66-66c10-11 23-14 36-8s20 17 20 31v62h7c6 0 58 1 105 13 28 7 73 19 109 50 66 57 67 150 67 173z'/%3E%3C/svg%3E") no-repeat 15px 56%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' data-name='Layer 1' viewBox='0 0 512 640'%3E%3Cpath fill='rgba(0,0,0,0.7)' d='M512 396v26c-3 7-5 14-11 19-18 14-43 7-52-15-9-24-26-39-48-50-30-15-63-21-96-23l-78-1a23 23 0 00-3 0v62a39 39 0 01-2 11c-6 22-34 33-55 12L15 284c-7-6-13-13-15-22v-12c2-9 8-16 15-22l87-87 66-66c10-11 23-14 36-8s20 17 20 31v62h7c6 0 58 1 105 13 28 7 73 19 109 50 66 57 67 150 67 173z'/%3E%3C/svg%3E")
+    no-repeat 15px 56%;
   background-size: 14px;
   padding-left: 35px;
   &:hover {
@@ -235,18 +267,18 @@ export default {
 }
 
 .slider .slide .item_title {
-    margin: 0 !important;
-    padding: 0 !important;
-    @apply flex flex-col;
-    a {
-      @apply m-0 mb-1 text-2xl;
-      font-weight: 600;
-      line-height: 1.5rem;
-    }
-    p.item_date {
-      @apply text-lg mt-2 mb-0 leading-tight font-bold;
-      color: rgba(0,0,0,0.4);
-    }
+  margin: 0 !important;
+  padding: 0 !important;
+  @apply flex flex-col;
+  a {
+    @apply m-0 mb-1 text-2xl;
+    font-weight: 600;
+    line-height: 1.5rem;
+  }
+  p.item_date {
+    @apply text-lg mt-2 mb-0 leading-tight font-bold;
+    color: rgba(0, 0, 0, 0.4);
+  }
 }
 .slide-md {
   .image {
@@ -295,7 +327,7 @@ export default {
 .next-enter-active,
 .back-leave-active,
 .back-enter-active {
-  transition: 1s cubic-bezier(0.25, 1, 0.5, 1);;
+  transition: 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .next-enter {
   transform: translate(100%, 0);
@@ -318,6 +350,4 @@ export default {
     opacity: 0.9;
   }
 }
-
-
 </style>

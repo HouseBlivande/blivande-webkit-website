@@ -11,13 +11,13 @@ const createUser = (form, authKey, errorMessages) =>
       auth_key: authKey,
       email: formField(form, "email"),
       username: generateUsername(form),
-      password: generatePassword({ length: 15 })
+      password: generatePassword({ length: 15 }),
     })
-      .map(pair => pair.map(encodeURIComponent).join("="))
+      .map((pair) => pair.map(encodeURIComponent).join("="))
       .join("&")}`
   ).then(
-    response => handleResponse(response, errorMessages),
-    response => handleNetworkError(response, errorMessages)
+    (response) => handleResponse(response, errorMessages),
+    (response) => handleNetworkError(response, errorMessages)
   );
 
 const createTopic = (form, apiKey, errorMessages) =>
@@ -25,13 +25,16 @@ const createTopic = (form, apiKey, errorMessages) =>
     method: "post",
     headers: { "Api-Key": apiKey, "Content-Type": "application/json" },
     body: JSON.stringify({
-      title: `COVID-19 Resilient Livelihoods - Registration by ${formField(form, "name")}`,
+      title: `COVID-19 Resilient Livelihoods - Registration by ${formField(
+        form,
+        "name"
+      )}`,
       raw: generateResponse(form),
-      category: process.env.VUE_APP_DISCOURSE_CATEGORY
-    })
+      category: process.env.VUE_APP_DISCOURSE_CATEGORY,
+    }),
   }).then(
-    response => handleResponse(response, errorMessages),
-    response => handleNetworkError(response, errorMessages)
+    (response) => handleResponse(response, errorMessages),
+    (response) => handleNetworkError(response, errorMessages)
   );
 
 const handleResponse = (response, errorMessages) =>
@@ -42,7 +45,7 @@ const handleResponse = (response, errorMessages) =>
         .then(({ errors }) =>
           Promise.reject(
             Object.keys(errors).map(
-              key => errorMessages[key] || errorMessages.default
+              (key) => errorMessages[key] || errorMessages.default
             )
           )
         );
@@ -52,24 +55,24 @@ const handleNetworkError = (response, errorMessages) =>
 
 const formField = (form, field) =>
   Object.values(form)
-    .map(f => (f[field] || {}).value)
-    .filter(value => value)
+    .map((f) => (f[field] || {}).value)
+    .filter((value) => value)
     .join("");
 
-const generateUsername = form =>
+const generateUsername = (form) =>
   `${parameterize(formField(form, "name"), 20, "_")}_${Math.ceil(
     Math.random() * 100
   )}`;
 
-const generateResponse = form => `<pre>${JSON.stringify(form)}</pre>`;
+const generateResponse = (form) => `<pre>${JSON.stringify(form)}</pre>`;
 
 export default (form, errorMessages) =>
   createUser(
     form,
     process.env.VUE_APP_DISCOURSE_AUTH_KEY,
     errorMessages
-  ).then(json => (
+  ).then((json) =>
     form.settings.createTopic
       ? createTopic(form, json.api_keys[0].key, errorMessages)
       : json
-  ))
+  );

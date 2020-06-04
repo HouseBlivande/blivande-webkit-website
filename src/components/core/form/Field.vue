@@ -10,7 +10,13 @@
       v-on:keyup.ctrl.enter="next"
     />
     <div class="checkbox pl-1" v-if="isCheckbox">
-      <input type="checkbox" id="check" :ref="name" :name="name" v-model="response[name].value"/>
+      <input
+        type="checkbox"
+        id="check"
+        :ref="name"
+        :name="name"
+        v-model="response[name].value"
+      />
       <label class="ml-1 font-bold" for="check">
         {{ placeholder }}
       </label>
@@ -41,7 +47,7 @@ export default {
     placeholder: String,
     half: Boolean,
     autofocus: Boolean,
-    next: Function
+    next: Function,
   },
   mounted() {
     this.handleFocus();
@@ -67,16 +73,16 @@ export default {
     },
     isFocused() {
       return document.activeElement == this.textarea;
-    }
+    },
   },
   methods: {
     handleFocus() {
       if (this.autofocus && !this.isFocused) {
         this.textarea.focus();
       }
-    }
+    },
   },
-  components: { Error }
+  components: { Error },
 };
 </script>
 
@@ -84,7 +90,7 @@ export default {
 .half {
   float: left;
   width: 47%;
-   &:nth-child(2) {
+  &:nth-child(2) {
     margin-left: 5%;
   }
 }
@@ -101,16 +107,16 @@ export default {
 .input {
   @apply border-2 font-bold;
   width: 100%;
-  padding: .84rem .7rem;
+  padding: 0.84rem 0.7rem;
   border-radius: 4px;
   font-size: 15px;
   margin: 0 0 10px 0;
 }
 
-input:focus, textarea:focus {
-  border: 2px solid #FAD964;
+input:focus,
+textarea:focus {
+  border: 2px solid #fad964;
 }
 .checkbox {
-
 }
 </style>

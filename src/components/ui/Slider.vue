@@ -4,44 +4,82 @@
     @mouseover="clear_interval"
     @mouseleave="toggle_play"
   >
+    <div class="toggle_menu mr-6 md:flex md:mr-0" v-if="show('arrows')">
+      <div
+        class="toggle previous"
+        :style="uiElementStyle('toggle', data.style)"
+        @click="changeSlide('back')"
+      ></div>
+      <div
+        class="toggle next"
+        :style="uiElementStyle('toggle', data.style)"
+        @click="changeSlide('next')"
+      ></div>
+    </div>
 
-      <div class="toggle_menu mr-6 md:flex md:mr-0" v-if="show('arrows')">
+    <transition-group
+      tag="div"
+      class="slider"
+      :name="currentTransition"
+      mode="out-in"
+    >
+      <div
+        v-for="number in [currentIndex]"
+        :key="number"
+        class="slide md:slide-md"
+        v-touch:swipe.left="next"
+        v-touch:swipe.right="back"
+      >
         <div
-          class="toggle previous"
-          :style="uiElementStyle('toggle', data.style)"
-          @click="changeSlide('back')"
-        ></div>
-        <div
-          class="toggle next"
-          :style="uiElementStyle('toggle', data.style)"
-          @click="changeSlide('next')"
-        ></div>
-      </div>
-
-    <transition-group tag="div" class="slider" :name="currentTransition" mode="out-in">
-      <div v-for="number in [currentIndex]" :key="number" class="slide md:slide-md" v-touch:swipe.left="next" v-touch:swipe.right="back">
-        <div class="slider_container md:slider_container-md" v-if="currentSlide">
-        <div v-if="$mq == 'md'" class="item_post md:item_post-md" :style="{ background: 'url(' + currentSlide.image_url + ')' }">
-          <Profile class="ml-3" v-if="show('author')" :data="currentSlide.author" />
-        </div>
-        <div class="w-full md:w-1/2 md:p-6 bg-white flex items-start flex-col overflow-scroll md:overflow-auto">
+          class="slider_container md:slider_container-md"
+          v-if="currentSlide"
+        >
+          <div
+            v-if="$mq == 'md'"
+            class="item_post md:item_post-md"
+            :style="{ background: 'url(' + currentSlide.image_url + ')' }"
+          >
+            <Profile
+              class="ml-3"
+              v-if="show('author')"
+              :data="currentSlide.author"
+            />
+          </div>
+          <div
+            class="w-full md:w-1/2 md:p-6 bg-white flex items-start flex-col overflow-scroll md:overflow-auto"
+          >
             <div class="item_title md:item_title-md">
-            <div v-if="show('title')">
-              <a :href="currentSlide.url" target="_blank">
-                <h4 :style="uiStyle('highlight', stylesheet)">{{ currentSlide.title }}</h4>
-              </a>
-            </div>
-              <p class="date" v-if="show('date')" :style="textStyle('paragraph', stylesheet)">
+              <div v-if="show('title')">
+                <a :href="currentSlide.url" target="_blank">
+                  <h4 :style="uiStyle('highlight', stylesheet)">
+                    {{ currentSlide.title }}
+                  </h4>
+                </a>
+              </div>
+              <p
+                class="date"
+                v-if="show('date')"
+                :style="textStyle('paragraph', stylesheet)"
+              >
                 <b>{{ currentSlide.created_at | formatDate }}</b>
               </p>
+            </div>
+            <div
+              class="slide_excerpt md:slide_excerpt-md"
+              :style="textStyle('paragraph', stylesheet)"
+              v-html="currentSlide.excerpt"
+            ></div>
+            <a
+              class="slide_link md:slide_link-md"
+              :style="uiStyle('action', stylesheet)"
+              :href="currentSlide.url"
+              target="_blank"
+              >Read more</a
+            >
           </div>
-          <div class="slide_excerpt md:slide_excerpt-md" :style="textStyle('paragraph', stylesheet)" v-html="currentSlide.excerpt"></div>
-          <a class="slide_link md:slide_link-md" :style="uiStyle('action', stylesheet)" :href="currentSlide.url" target="_blank">Read more</a>
-        </div>
         </div>
       </div>
     </transition-group>
-
   </div>
 </template>
 
@@ -56,31 +94,32 @@ export default {
       users: [],
       slides: [],
       currentIndex: 0,
-      currentTransition: 'next'
+      currentTransition: "next",
     };
   },
   components: {
-   Profile
+    Profile,
   },
   methods: {
     show(value) {
       return this.display.includes(value);
     },
     next() {
-      this.changeSlide('next');
+      this.changeSlide("next");
       this.set_interval();
     },
     back() {
-      this.changeSlide('back');
+      this.changeSlide("back");
       this.set_interval();
     },
     changeSlide(dir) {
-      this.currentIndex = dir === 'next' ? this.currentIndex + 1 : this.currentIndex - 1;
+      this.currentIndex =
+        dir === "next" ? this.currentIndex + 1 : this.currentIndex - 1;
       this.currentTransition = dir;
     },
     getUser(userId) {
       if (this.users.length) {
-        return this.users.filter(user => user.id == userId)[0];
+        return this.users.filter((user) => user.id == userId)[0];
       }
     },
     clear_interval() {
@@ -92,8 +131,8 @@ export default {
     set_interval() {
       this.clear_interval();
       var self = this;
-      this.interval = setInterval(function() {
-        self.changeSlide('next');
+      this.interval = setInterval(function () {
+        self.changeSlide("next");
       }, this.autoplay);
       this.play = true;
     },
@@ -106,28 +145,29 @@ export default {
         this.clear_interval();
       }
       if (this.autoplay && !this.interval) {
-        this.set_interval()
+        this.set_interval();
       }
-    }
+    },
   },
   computed: {
-    currentSlide: function() {
+    currentSlide: function () {
       return this.slides[Math.abs(this.currentIndex) % this.slides.length];
     },
-    cooked: function() {
-      if (!this.currentSlide) { return ""; }
+    cooked: function () {
+      if (!this.currentSlide) {
+        return "";
+      }
 
       return this.currentSlide.cooked.replace(
         'class="lightbox-wrapper"',
         'class="lightbox-wrapper hidden"'
-      )
-    }
+      );
+    },
   },
   created() {
     if (this.data.length) {
       this.slides = this.data.slice(0);
-    }
-    else if (this.data.users && this.data.users.length) {
+    } else if (this.data.users && this.data.users.length) {
       this.users = this.data.users.slice(0);
     }
     if (this.autoplay != undefined) {
@@ -135,11 +175,11 @@ export default {
     }
   },
   filters: {
-    formatDate: function(value) {
+    formatDate: function (value) {
       return moment(String(value)).format("dddd, MMMM DD YYYY");
-    }
+    },
   },
-  props: ["autoplay", "data", "display", "config", "stylesheet", "globalStyle"]
+  props: ["autoplay", "data", "display", "config", "stylesheet", "globalStyle"],
 };
 </script>
 
@@ -147,7 +187,7 @@ export default {
 .slider_container {
   width: 100%;
 }
-.slider{
+.slider {
   overflow: hidden;
   position: relative;
   height: 20em;
@@ -165,7 +205,7 @@ export default {
   top: 0;
   left: 0;
   bottom: 0;
-  right:0;
+  right: 0;
 }
 
 .slider .excerpt {
@@ -174,20 +214,20 @@ export default {
 }
 
 .slider .slide .item_title {
-    p.date {
-      margin: 20px 10px !important;
-      background: black;
-      display: inline-block;
-      width: auto;
-      color: white;
-      padding: 10px;
-      font-size: 14px;
-    }
-    p.excerpt {
-          margin-top: 10px;
+  p.date {
+    margin: 20px 10px !important;
+    background: black;
+    display: inline-block;
+    width: auto;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+  }
+  p.excerpt {
+    margin-top: 10px;
 
-      font-size: 14px;
-    }
+    font-size: 14px;
+  }
 }
 .slide-md {
   .image {
@@ -236,7 +276,7 @@ export default {
 .next-enter-active,
 .back-leave-active,
 .back-enter-active {
-  transition: 1s cubic-bezier(0.25, 1, 0.5, 1);;
+  transition: 1s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .next-enter {
   transform: translate(100%, 0);
@@ -250,6 +290,4 @@ export default {
 .back-leave-to {
   transform: translate(100%, 0);
 }
-
-
 </style>

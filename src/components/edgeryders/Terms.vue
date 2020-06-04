@@ -12,8 +12,9 @@
           class="underline"
           href="https://edgeryders.eu/t/netiquette/45"
           target="_blank"
-          >Community Guidelines</a
         >
+          Community Guidelines
+        </a>
         are here to help you understand what it means to be a member of
         Edgeryders. Don’t forget that your use of Edgeryders is subject to these
         Community Guidelines and our
@@ -21,30 +22,41 @@
           class="underline"
           href="https://edgeryders.eu/t/id/44"
           targert="_blank"
-          >Terms of Service</a
+        >
+          Terms of Service </a
         >.
       </p>
     </div>
 
     <div class="pt-6 terms_container md:terms_container-md">
-      <h1 class="text-white font-bold border-b border-white pb-2">Contact Us</h1>
+      <h1 class="text-white font-bold border-b border-white pb-2">
+        Contact Us
+      </h1>
       <p class="text-white mt-2">
-        <a class="underline" href="mailto:contact@edgeryders.eu" target="_blank"
-          >Email</a
-        ><br />
+        <a
+          class="underline"
+          href="mailto:contact@edgeryders.eu"
+          target="_blank"
+        >
+          Email
+        </a>
+        <br />
         <a
           class="underline"
           href="https://twitter.com/edgeryders"
           target="_blank"
-          >Twitter</a
-        ><br />
+        >
+          Twitter
+        </a>
+        <br />
         <a
           class="underline"
           href="https://facebook.com/edgeryders"
           target="_blank"
-          >Facebook</a
         >
+          Facebook
+        </a>
       </p>
     </div>
-  </div>
-</template>
+  </div> </template
+>;

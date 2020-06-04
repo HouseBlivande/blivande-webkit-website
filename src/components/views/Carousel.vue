@@ -1,27 +1,29 @@
 <template>
-  <div class='carousel-view' @mouseover="clear_interval" @mouseleave="toggle_play">
+  <div
+    class="carousel-view"
+    @mouseover="clear_interval"
+    @mouseleave="toggle_play"
+  >
     <div class="section_title w-full md:w-auto border-none mb-0">
       <div>{{ custom.title }}</div>
-        <div class='toggle_menu md:flex'>
-          <div
-          class="toggle previous"
-          @click="previous"
-          ></div>
-          <div
-            class="toggle next"
-            @click="next"
-          ></div>
-          </div>
+      <div class="toggle_menu md:flex">
+        <div class="toggle previous" @click="previous"></div>
+        <div class="toggle next" @click="next"></div>
+      </div>
     </div>
 
-    <div
-      class='carousel_container'
-      tag="div">
-      <a :href="slide.url" target="_blank" 
-        v-for="slide in slides.slice(slideIndex, slideIndex + slideCount)" 
-        class='slide md:slide-md'
-        :key="slide">
-        <div class="logo" :style="{background: 'url(' + getImg(slide.logo) + ')'}"></div>
+    <div class="carousel_container" tag="div">
+      <a
+        :href="slide.url"
+        target="_blank"
+        v-for="slide in slides.slice(slideIndex, slideIndex + slideCount)"
+        class="slide md:slide-md"
+        :key="slide"
+      >
+        <div
+          class="logo"
+          :style="{ background: 'url(' + getImg(slide.logo) + ')' }"
+        ></div>
       </a>
     </div>
   </div>
@@ -29,39 +31,39 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       slideIndex: 0,
       slideCount: 3,
       slides: [],
-      play: false
-    }
+      play: false,
+    };
   },
   methods: {
-    next () {
+    next() {
       var slideCount = this.slideCount;
       if (this.$mq == "sm") {
-       slideCount = 1;
-      };
+        slideCount = 1;
+      }
       if (this.slideIndex + slideCount > this.slides.length) {
-        this.slideIndex = 0
+        this.slideIndex = 0;
       } else {
         this.slideIndex = this.slideIndex + slideCount;
-      };
+      }
     },
-    previous () {
+    previous() {
       var slideCount = this.slideCount;
       if (this.$mq == "sm") {
-       slideCount = 1;
-      };
+        slideCount = 1;
+      }
       if (this.slideIndex - slideCount < 0) {
-        this.slideIndex = 0
+        this.slideIndex = 0;
       } else {
         this.slideIndex = this.slideIndex - slideCount;
-      };
+      }
     },
     getImg(value) {
-      return require('../../' + value);
+      return require("../../" + value);
     },
     clear_interval() {
       if (this.interval) {
@@ -76,26 +78,26 @@ export default {
       }
       if (this.autoplay && !this.interval) {
         var self = this;
-        this.interval = setInterval(function() {
+        this.interval = setInterval(function () {
           self.next();
         }, this.autoplay);
         this.play = true;
       }
-    }
+    },
   },
   created() {
-      this.slides = this.custom.content.slice(0);
-      if (this.$mq == "sm") {
-       this.slideCount = 3;
-      } else {
-        this.slideCount = 1;
-      };
-      if (this.autoplay != undefined) {
-        this.toggle_play(this.autoplay);
-      };
+    this.slides = this.custom.content.slice(0);
+    if (this.$mq == "sm") {
+      this.slideCount = 3;
+    } else {
+      this.slideCount = 1;
+    }
+    if (this.autoplay != undefined) {
+      this.toggle_play(this.autoplay);
+    }
   },
-  props: ["custom", "display", "autoplay"]
-}
+  props: ["custom", "display", "autoplay"],
+};
 </script>
 
 <style lang="scss" scoped>
@@ -108,7 +110,7 @@ export default {
     opacity: 0;
   }
   100% {
-    opacity: 1
+    opacity: 1;
   }
 }
 .carousel-view {
@@ -125,18 +127,18 @@ export default {
   height: 22em;
 }
 .slide {
-    flex-basis: 30%;
-    height: 20em;
-    margin: 1em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    background: #fff;
-    justify-content: space-between;
-    animation: fade 1s ease forwards;
-    animation-delay: .1s;
+  flex-basis: 30%;
+  height: 20em;
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  background: #fff;
+  justify-content: space-between;
+  animation: fade 1s ease forwards;
+  animation-delay: 0.1s;
   .logo {
     width: 100%;
     flex-basis: 120px;
@@ -174,10 +176,10 @@ export default {
     }
   }
   &:nth-child(2) {
-    animation-delay: .2s;
+    animation-delay: 0.2s;
   }
   &:nth-child(3) {
-    animation-delay: .3s;
+    animation-delay: 0.3s;
   }
 }
 
@@ -189,5 +191,4 @@ export default {
     }
   }
 }
-
 </style>
