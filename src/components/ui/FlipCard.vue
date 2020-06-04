@@ -1,10 +1,15 @@
 <template>
-  <div class="flip_card md:flip-card-md" @click="flipCard" :class="{'active': flipped}" :href="url" target="_blank">
+  <div
+    class="flip_card md:flip-card-md"
+    @click="flipCard"
+    :class="{ active: flipped }"
+    :href="url"
+    target="_blank"
+  >
     <div class="container">
       <div class="front">
         <slot name="image"></slot>
-        <slot name="front">
-        </slot>
+        <slot name="front"> </slot>
       </div>
       <div class="back">
         <slot name="back"></slot>
@@ -23,18 +28,17 @@ export default {
     };
   },
   methods: {
-    flipCard(){
-        this.flipped = !this.flipped
+    flipCard() {
+      this.flipped = !this.flipped;
     },
-    flipMobile(){
-      this.flipped = !this.flipped
+    flipMobile() {
+      this.flipped = !this.flipped;
     }
   }
 };
 </script>
 
 <style type="text/css" scoped>
-
 .container {
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -82,8 +86,6 @@ export default {
   padding-top: 10px;
 }
 
-
-
 .back {
   position: absolute;
   top: 0;
@@ -104,6 +106,4 @@ export default {
   @apply text-xl font-bold text-left w-full pt-1 pb-2 mx-auto border-b;
   width: 80%;
 }
-
-
 </style>

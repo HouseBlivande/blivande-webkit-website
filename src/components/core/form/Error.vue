@@ -9,7 +9,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/colors.scss';
+@import "@/assets/colors.scss";
 
 .error {
   color: $c-red-50;

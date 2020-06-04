@@ -100,8 +100,7 @@ export default {
 .er_photo {
   transform: rotate(-1.2deg);
   .photo {
-    background: url("/img/edgeryders/group.jpg") no-repeat center 15px
-      #f7f8f8;
+    background: url("/img/edgeryders/group.jpg") no-repeat center 15px #f7f8f8;
     background-size: 95%;
     height: 200px !important;
     padding-bottom: 10px;

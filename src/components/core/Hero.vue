@@ -1,10 +1,25 @@
 <template>
-  <div class="hero w-full bg-gray-300 md:hero-md" :style="wrapperStyle(data.style)">
-
-    <CategoryView v-if="category" :globalStyle="globalStyle" :data="category" :baseUrl="baseUrl"></CategoryView>
-    <EventView :globalStyle="globalStyle" v-if="$globals.event || $globals.template == 'event'" :data="data"></EventView>
-    <BlivandeView :globalStyle="globalStyle" v-else :data="data" :index="index"></BlivandeView>
-
+  <div
+    class="hero w-full bg-gray-300 md:hero-md"
+    :style="wrapperStyle(data.style)"
+  >
+    <CategoryView
+      v-if="category"
+      :globalStyle="globalStyle"
+      :data="category"
+      :baseUrl="baseUrl"
+    ></CategoryView>
+    <EventView
+      :globalStyle="globalStyle"
+      v-if="$globals.event || $globals.template == 'event'"
+      :data="data"
+    ></EventView>
+    <BlivandeView
+      :globalStyle="globalStyle"
+      v-else
+      :data="data"
+      :index="index"
+    ></BlivandeView>
   </div>
 </template>
 
@@ -15,8 +30,7 @@ import CategoryView from "@/components/views/Hero_Category.vue";
 import BlivandeView from "@/components/views/Hero/Blivande.vue";
 
 export default {
-  methods: {
-  },
+  methods: {},
   components: {
     EventView,
     CategoryView,
@@ -31,14 +45,9 @@ export default {
 };
 </script>
 
-
 <style scoped lang="scss">
-
 .hero {
-@apply border-b;
- background-attachment: fixed !important;
+  @apply border-b;
+  background-attachment: fixed !important;
 }
-
-
-
 </style>

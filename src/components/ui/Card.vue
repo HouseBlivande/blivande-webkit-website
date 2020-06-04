@@ -14,7 +14,6 @@
         class="avatar"
         :style="{ backgroundImage: 'url(' + item.avatar + ')' }"
       ></div>
-
     </div>
     <div class="card_excerpt" v-html="item.bio"></div>
     <div class="card_footer">Connect with @{{ item.username }}</div>

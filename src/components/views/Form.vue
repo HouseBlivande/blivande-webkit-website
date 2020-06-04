@@ -1,41 +1,99 @@
 <template>
-  <div class="view_form md:flex flex-col mx-auto items-start" :class="{'view_form-md': mq == 'desktop'}">
-      <h3 class="form_title" v-if="data.title">{{ data.title }}</h3>
-      <div class="form" v-if="!submitted">
-        <div class="field" v-for="(field, index) in data.fields" :key="index">
-          <p :class="{title_underline: field.type == 'create_account'}">{{field.title}} <span v-if="field.required && field.id !== 'create_account'" class="required">*</span></p>
-          <p class="small" v-if="field.subtitle">{{field.subtitle}}</p>
-          <input v-if="field.type == 'text'" type="text" v-model="form[field.id]" :placeholder="field.placeholder"/>
-          <textarea v-if="field.type == 'textarea'" v-model="form[field.id]" :placeholder="field.placeholder"/>
-          <div class="account_terms" v-if="field.type == 'create_account'">
-            <label class="checkbox bounce">
-              <input type="checkbox" v-model="form[field.id]">
-              <svg viewBox="0 0 21 21">
-                <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
-              </svg>
-            </label>
-            <span class="terms pl-1">Yes, and I accept the <a href='https://communities.edgeryders.eu/tos' targer='_blank'>terms of service</a> and <a href='https://communities.edgeryders.eu/tos' targer='_blank'>privacy policy</a> <span class="required">*</span></span>
-          </div>
+  <div
+    class="view_form md:flex flex-col mx-auto items-start"
+    :class="{ 'view_form-md': mq == 'desktop' }"
+  >
+    <h3 class="form_title" v-if="data.title">{{ data.title }}</h3>
+    <div class="form" v-if="!submitted">
+      <div class="field" v-for="(field, index) in data.fields" :key="index">
+        <p :class="{ title_underline: field.type == 'create_account' }">
+          {{ field.title }}
+          <span
+            v-if="field.required && field.id !== 'create_account'"
+            class="required"
+            >*</span
+          >
+        </p>
+        <p class="small" v-if="field.subtitle">{{ field.subtitle }}</p>
+        <input
+          v-if="field.type == 'text'"
+          type="text"
+          v-model="form[field.id]"
+          :placeholder="field.placeholder"
+        />
+        <textarea
+          v-if="field.type == 'textarea'"
+          v-model="form[field.id]"
+          :placeholder="field.placeholder"
+        />
+        <div class="account_terms" v-if="field.type == 'create_account'">
+          <label class="checkbox bounce">
+            <input type="checkbox" v-model="form[field.id]" />
+            <svg viewBox="0 0 21 21">
+              <polyline points="5 10.75 8.5 14.25 16 6"></polyline>
+            </svg>
+          </label>
+          <span class="terms pl-1"
+            >Yes, and I accept the
+            <a href="https://communities.edgeryders.eu/tos" targer="_blank"
+              >terms of service</a
+            >
+            and
+            <a href="https://communities.edgeryders.eu/tos" targer="_blank"
+              >privacy policy</a
+            >
+            <span class="required">*</span></span
+          >
         </div>
-        <div class="border p-3 bg-gray-100 rounded-lg" v-if="errors.length > 0">
-          Please <span v-if="errors[0] !== 'create_account'">enter a valid</span> <span v-for="(error, index) in errors" :key="error"><span v-if="index !== errors.length-1 && index !== 0">, </span><span v-if="index == errors.length-1 && errors.length-1 !== 0"> &amp; </span><span class="font-bold" v-if="error !== 'create_account'">{{error}}</span><span class="font-bold" v-if="error == 'create_account'">accept the terms</span></span>
-        </div>
-        <input class="submit" :class="{'active': !validateForm().length}" @click="sendForm()" type="submit" placeholder='send'>
       </div>
-      <div v-else class="form_confirmation md:form_confirmation-md">
-      
-         <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/><path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/></svg>
+      <div class="border p-3 bg-gray-100 rounded-lg" v-if="errors.length > 0">
+        Please <span v-if="errors[0] !== 'create_account'">enter a valid</span>
+        <span v-for="(error, index) in errors" :key="error"
+          ><span v-if="index !== errors.length - 1 && index !== 0">, </span
+          ><span v-if="index == errors.length - 1 && errors.length - 1 !== 0">
+            &amp; </span
+          ><span class="font-bold" v-if="error !== 'create_account'">{{
+            error
+          }}</span
+          ><span class="font-bold" v-if="error == 'create_account'"
+            >accept the terms</span
+          ></span
+        >
+      </div>
+      <input
+        class="submit"
+        :class="{ active: !validateForm().length }"
+        @click="sendForm()"
+        type="submit"
+        placeholder="send"
+      />
+    </div>
+    <div v-else class="form_confirmation md:form_confirmation-md">
+      <svg
+        class="checkmark"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 52 52"
+      >
+        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+        <path
+          class="checkmark__check"
+          fill="none"
+          d="M14.1 27.2l7.1 7.2 16.7-16.8"
+        />
+      </svg>
 
-        <div class="confirmation_message md:confirmation_message-md">
-          <h3 class="text-xl font-bold border-b pb-2 mb-2">{{data.success.title}}</h3>
-          <p class="text-lg">{{data.success.text}}</p>
-        </div>
+      <div class="confirmation_message md:confirmation_message-md">
+        <h3 class="text-xl font-bold border-b pb-2 mb-2">
+          {{ data.success.title }}
+        </h3>
+        <p class="text-lg">{{ data.success.text }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 import submit from "@/helpers/discourse";
 
 export default {
@@ -43,87 +101,93 @@ export default {
   data() {
     return { form: {}, submitted: false, errors: [] };
   },
-  created() {
- 
-  },
-  computed: {
-    
-  },
+  created() {},
+  computed: {},
   methods: {
-    submitForm(){
-       submit(this.transformForSubmit(this.form).then(() => window.alert('success')))
-     },
-     transformForSubmit(obj) {
-       return Object.entries(JSON.parse(JSON.stringify(obj)))
-         .reduce((result, [key, value]) => {
-           result[key] = { value: (value && value.text) || value };
-           return result;
-         }, {});
-     },
+    submitForm() {
+      submit(
+        this.transformForSubmit(this.form).then(() => window.alert("success"))
+      );
+    },
+    transformForSubmit(obj) {
+      return Object.entries(JSON.parse(JSON.stringify(obj))).reduce(
+        (result, [key, value]) => {
+          result[key] = { value: (value && value.text) || value };
+          return result;
+        },
+        {}
+      );
+    },
     validateForm() {
       var array = [];
-      this.data.fields.forEach((field) => {
-        if (field.required && this.form[field.id] == '') {
-          array.push(field.id)
+      this.data.fields.forEach(field => {
+        if (field.required && this.form[field.id] == "") {
+          array.push(field.id);
         }
-      })
+      });
       return array;
-     },
-     sendForm() {
-        this.errors = this.validateForm();
-        if (!this.errors.length) {
-          this.sendAirtable()
-        }
-     },
-     sendAirtable() {
-        var self = this;
-        const data = {
-          "records": [
-            {
-              "fields": ''
-            }
-          ]
-        };
-
-        data['records'][0]['fields'] = this.form;
-
-        let axiosConfig = {
-          headers: {
-          'Authorization': 'Bearer keyocggSHfh6E9gSg',
-          'Content-Type': 'application/json'
+    },
+    sendForm() {
+      this.errors = this.validateForm();
+      if (!this.errors.length) {
+        this.sendAirtable();
+      }
+    },
+    sendAirtable() {
+      var self = this;
+      const data = {
+        records: [
+          {
+            fields: ""
           }
-        };
+        ]
+      };
 
-        axios.post('https://api.airtable.com/v0/' + this.data.settings.airtable.base + '/' + this.data.settings.airtable.table, data, axiosConfig)
-        .then(function (response) {
+      data["records"][0]["fields"] = this.form;
+
+      let axiosConfig = {
+        headers: {
+          Authorization: "Bearer keyocggSHfh6E9gSg",
+          "Content-Type": "application/json"
+        }
+      };
+
+      axios
+        .post(
+          "https://api.airtable.com/v0/" +
+            this.data.settings.airtable.base +
+            "/" +
+            this.data.settings.airtable.table,
+          data,
+          axiosConfig
+        )
+        .then(function(response) {
           window.console.log(response);
           self.submitted = true;
         })
-        .catch(function (error) {
+        .catch(function(error) {
           window.console.log(error);
-        })
-
-     }
+        });
+    }
   }
 };
 </script>
 <style lang="scss">
-
-$green: #00C388;
+$green: #00c388;
 $white: #fff;
 
-$curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+$curve: cubic-bezier(0.65, 0, 0.45, 1);
 
 @keyframes bounce {
-    50% {
-        transform: scale(1.2);
-    }
-    75% {
-        transform: scale(.9);
-    }
-    100% {
-        transform: scale(1);
-    }
+  50% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .view_form {
@@ -140,13 +204,13 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
 }
 .field {
   @apply mb-1;
-  input, textarea {
+  input,
+  textarea {
     @apply mt-3 mb-0 border border-gray-300;
     font-size: 14px;
     width: 100%;
   }
 }
-
 
 .form_title {
   @apply w-full inline-block border-b text-lg font-bold pt-0 mt-0 pb-2;
@@ -168,14 +232,15 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
       @apply pb-3 border-b;
     }
   }
-  input, textarea {
+  input,
+  textarea {
     @apply border p-3 w-full;
     border-radius: 5px;
   }
   span.terms {
-    @apply ml-2 ;
+    @apply ml-2;
     a {
-     @apply underline font-bold;
+      @apply underline font-bold;
     }
   }
   .submit {
@@ -184,91 +249,91 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
       background: black;
       color: white;
       &:hover {
-        cursor: pointer
+        cursor: pointer;
       }
     }
   }
 }
 
 .checkbox {
-    --background: #fff;
-    --border: #D1D6EE;
-    --border-hover: #BBC1E1;
-    --border-active: #1E2235;
-    --tick: #fff;
+  --background: #fff;
+  --border: #d1d6ee;
+  --border-hover: #bbc1e1;
+  --border-active: #1e2235;
+  --tick: #fff;
+  position: relative;
+  input,
+  svg {
+    width: 21px;
+    height: 21px;
+    display: block;
+  }
+  input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
     position: relative;
-    input,
-    svg {
-        width: 21px;
-        height: 21px;
-        display: block;
+    outline: none;
+    background: var(--background);
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: box-shadow 0.3s;
+    box-shadow: inset 0 0 0 var(--s, 1px) var(--b, var(--border));
+    &:hover {
+      --s: 2px;
+      --b: var(--border-hover);
     }
+    &:checked {
+      --b: var(--border-active);
+    }
+  }
+  svg {
+    pointer-events: none;
+    fill: none;
+    stroke-width: 2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke: var(--stroke, var(--border-active));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 21px;
+    height: 21px;
+    transform: scale(var(--scale, 1)) translateZ(0);
+  }
+  &.path {
     input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        position: relative;
-        outline: none;
-        background: var(--background);
-        border: none;
-        margin: 0;
-        padding: 0;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: box-shadow .3s;
-        box-shadow: inset 0 0 0 var(--s, 1px) var(--b, var(--border));
-        &:hover {
-            --s: 2px;
-            --b: var(--border-hover);
+      &:checked {
+        --s: 2px;
+        transition-delay: 0.4s;
+        & + svg {
+          --a: 16.1 86.12;
+          --o: 102.22;
         }
-        &:checked {
-            --b: var(--border-active);
-        }
+      }
     }
     svg {
-        pointer-events: none;
-        fill: none;
-        stroke-width: 2px;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke: var(--stroke, var(--border-active));
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 21px;
-        height: 21px;
-        transform: scale(var(--scale, 1)) translateZ(0);
+      stroke-dasharray: var(--a, 86.12);
+      stroke-dashoffset: var(--o, 86.12);
+      transition: stroke-dasharray 0.6s, stroke-dashoffset 0.6s;
     }
-    &.path {
-        input {
-            &:checked {
-                --s: 2px;
-                transition-delay: .4s;
-                & + svg {
-                    --a: 16.1 86.12;
-                    --o: 102.22;
-                }
-            }
+  }
+  &.bounce {
+    --stroke: var(--tick);
+    input {
+      &:checked {
+        --s: 11px;
+        & + svg {
+          animation: bounce 0.4s linear forwards 0.2s;
         }
-        svg {
-            stroke-dasharray: var(--a, 86.12);
-            stroke-dashoffset: var(--o, 86.12);
-            transition: stroke-dasharray .6s, stroke-dashoffset .6s;
-        }
+      }
     }
-    &.bounce {
-        --stroke: var(--tick);
-        input {
-            &:checked {
-                --s: 11px;
-                & + svg {
-                    animation: bounce .4s linear forwards .2s;
-                }
-            }
-        }
-        svg {
-            --scale: 0;
-        }
+    svg {
+      --scale: 0;
     }
+  }
 }
 
 .form_confirmation {
@@ -301,7 +366,8 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   stroke: $white;
   stroke-miterlimit: 10;
   box-shadow: inset 0px 0px 0px $green;
-  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  animation: fill 0.4s ease-in-out 0.4s forwards,
+    scale 0.3s ease-in-out 0.9s both;
 }
 
 .checkmark__circle {
@@ -311,14 +377,14 @@ $curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
   stroke-miterlimit: 10;
   stroke: $green;
   fill: none;
-  animation: stroke .6s $curve forwards;
+  animation: stroke 0.6s $curve forwards;
 }
 
 .checkmark__check {
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  animation: stroke .3s $curve .8s forwards;
+  animation: stroke 0.3s $curve 0.8s forwards;
 }
 
 .account_terms {

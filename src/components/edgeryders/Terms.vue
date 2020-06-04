@@ -27,7 +27,9 @@
     </div>
 
     <div class="pt-6 terms_container md:terms_container-md">
-      <h1 class="text-white font-bold border-b border-white pb-2">Contact Us</h1>
+      <h1 class="text-white font-bold border-b border-white pb-2">
+        Contact Us
+      </h1>
       <p class="text-white mt-2">
         <a class="underline" href="mailto:contact@edgeryders.eu" target="_blank"
           >Email</a

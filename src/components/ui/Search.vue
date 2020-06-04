@@ -1,14 +1,19 @@
 <template>
   <div class="md:mb-2">
-    <input class="rounded-lg" :style="hoverStyle('highlight', stylesheet)" v-model="search" placeholder="search events" />
+    <input
+      class="rounded-lg"
+      :style="hoverStyle('highlight', stylesheet)"
+      v-model="search"
+      placeholder="search events"
+    />
   </div>
 </template>
 
 <script>
-import { bus } from '@/main'
+import { bus } from "@/main";
 
 export default {
-  name: 'Search',
+  name: "Search",
   data() {
     return {
       search: ""
@@ -16,9 +21,9 @@ export default {
   },
   watch: {
     search() {
-      bus.$emit('clearDate', null);
-      bus.$emit('clearType', null);
-      bus.$emit('filterSearch', this.search);
+      bus.$emit("clearDate", null);
+      bus.$emit("clearType", null);
+      bus.$emit("filterSearch", this.search);
     }
   },
   props: ["stylesheet", "globalStyle"]
@@ -26,7 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 input {
   @apply w-full p-2 mb-4 border;
   &:focus {

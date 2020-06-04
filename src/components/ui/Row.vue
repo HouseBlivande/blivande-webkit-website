@@ -47,15 +47,27 @@
         <template slot="front">
           <div class="topic_data">
             <div class="topic_title" v-if="show('title')">
-              <h2 :style="uiStyle('highlight', stylesheet)" >{{ item.title.split('.')[1] }}</h2>
+              <h2 :style="uiStyle('highlight', stylesheet)">
+                {{ item.title.split(".")[1] }}
+              </h2>
             </div>
 
             <Profile v-if="show('author')" :data="item.author" />
           </div>
         </template>
         <template slot="back">
-          <div class="card_excerpt" :style="textStyle('paragraph', stylesheet)" v-html="item.excerpt.split('.')[0] + '.'"></div>
-          <a class="card_footer" :style="uiStyle('action', stylesheet)" :href="item.url" target="_blank">Tell me more!</a>
+          <div
+            class="card_excerpt"
+            :style="textStyle('paragraph', stylesheet)"
+            v-html="item.excerpt.split('.')[0] + '.'"
+          ></div>
+          <a
+            class="card_footer"
+            :style="uiStyle('action', stylesheet)"
+            :href="item.url"
+            target="_blank"
+            >Tell me more!</a
+          >
         </template>
       </Card>
     </div>
@@ -79,20 +91,20 @@ export default {
   },
   methods: {
     strippedCooked(cooked) {
-       let stripped = cooked.replace( /(<span([^>].*)<\/span>)/ig, '');
-       return stripped.replace( /(<([^>]+)>)/ig, '');
-     },
+      let stripped = cooked.replace(/(<span([^>].*)<\/span>)/gi, "");
+      return stripped.replace(/(<([^>]+)>)/gi, "");
+    },
     show(value) {
       return this.display.includes(value);
     },
-    toggleCard(){
+    toggleCard() {
       this.$refs.flipCard.flipMobile();
     },
     scroll() {
       this.$nextTick(() => {
         this.$refs.content.scrollLeft += 1000;
       });
-    },
+    }
   },
   filters: {
     formatDate: function(value) {
@@ -102,7 +114,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-
-</style>
+<style lang="scss"></style>
