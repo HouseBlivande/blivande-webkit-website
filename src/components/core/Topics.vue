@@ -2,14 +2,14 @@
   <div class="section md:section-md" :style="containerStyle(data.style)">
     <div class="flex font-bold justify-between items-center mx-auto" v-if="data.title" :style="textStyle('title', data.style)" >
       <h3 class="m-0 p-0 w-full" :class="titleClassSize(data.style)">{{ data.title }}</h3>
-      <div class="toggle_menu" v-if="data.views && data.views.length">
+      <!-- div class="toggle_menu" v-if="data.views && data.views.length > 1">
         <div v-for="(view, index) in getViews(data.views)"
           class="toggle"
           :class="[view, {active: activeView == view}]"
           @click="toggleView(view)"
           :key="index"
         ></div>
-      </div>
+      </div -->
     </div>
     <div v-for="(view, index) in data.views" :key="index">
 
@@ -28,11 +28,10 @@
       
               <Grid v-if="topics && view.grid && activeView == 'grid' && ready" v-bind:data="topics" :config="view.grid">
                 <template v-slot:item="{ item }">
-                  
                  <GridItem>
                     <template>
                       <div slot="header">
-                        <a :href="getPermalink(item.slug)" target="_blank" class="">{{item.title}}</a>
+                        <a :href="item.url" target="_blank" class="">{{item.title}}</a>
                         <p class="item_date" v-if="show(view.grid.display, 'date')">
                           {{ item.created_at | formatDate }}
                         </p>
@@ -43,8 +42,8 @@
                       </div>
                       <div slot="footer">
                         <div class="item_meta">
-                          <a class="item_favs" v-if="show(view.grid.display, 'favourites')" :href="getPermalink(item.slug)" target="_blank">{{item.like_count}}</a>
-                          <a class="item_replies" v-if="show(view.grid.display, 'replies')" :href="getPermalink(item.slug)" target="_blank">{{item.reply_count}}</a>
+                          <a class="item_favs" v-if="show(view.grid.display, 'favourites')" :href="item.url" target="_blank">{{item.like_count}}</a>
+                          <a class="item_replies" v-if="show(view.grid.display, 'replies')" :href="item.url" target="_blank">{{item.reply_count}}</a>
                         </div>
                       </div>
                     </template>
@@ -52,7 +51,6 @@
 
                 </template>
               </Grid>
-
           <List v-if="topics && view.list && activeView == 'list' && ready" :data="topics" :config="view.list">
             <template v-slot:item="{ item }">
               
@@ -152,11 +150,11 @@ export default {
     },
     getTopics(value, filter) {
       axios.get(
-        `${this.baseUrl}/${filter}/${value}.json`
+        `${this.baseUrl}/webkit_components/topics.json?${filter}=${value}&per=500&serializer=event`
       ).then(({ data }) => {
-        var topics = data.topic_list.topics;
-        if (this.data.sort_by) {
-           topics = this.sortBy(data, topics.sort_by.property, topics.sort_by.order)
+        var topics = data;
+        if (this.data.config.sort_by) {
+           topics = this.sortBy(data, this.data.config.sort_by.property, this.data.config.sort_by.order)
          }
         this.topics = topics;
         this.ready = true

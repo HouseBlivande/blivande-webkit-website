@@ -3,7 +3,7 @@
 
     <CategoryView v-if="category" :globalStyle="globalStyle" :data="category" :baseUrl="baseUrl"></CategoryView>
     <EventView :globalStyle="globalStyle" v-if="$globals.event || $globals.template == 'event'" :data="data"></EventView>
-    <StandardView :globalStyle="globalStyle" v-else :data="data" :index="index"></StandardView>
+    <BlivandeView :globalStyle="globalStyle" v-else :data="data" :index="index"></BlivandeView>
 
   </div>
 </template>
@@ -12,7 +12,7 @@
 import moment from "moment";
 import EventView from "@/components/views/Hero_Event.vue";
 import CategoryView from "@/components/views/Hero_Category.vue";
-import StandardView from "@/components/views/Hero_Standard.vue";
+import BlivandeView from "@/components/views/Hero/Blivande.vue";
 
 export default {
   methods: {
@@ -20,7 +20,7 @@ export default {
   components: {
     EventView,
     CategoryView,
-    StandardView
+    BlivandeView
   },
   filters: {
     formatDate: function(value) {

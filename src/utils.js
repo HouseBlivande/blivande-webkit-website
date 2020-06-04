@@ -56,7 +56,7 @@ export default {
     },
     remoteConfig(configId) {
       axios.get(
-        'https://edgeryders.eu/t/' + configId + '.json'
+        'https://forum.blivande.com/t/' + configId + '.json'
         ).then(({ data }) => {
           if (this.getJson(data.post_stream.posts[0].cooked)){
             var json = this.getJson(data.post_stream.posts[0].cooked);
@@ -77,7 +77,7 @@ export default {
       }
       if (config.config.configId) {
        axios.get(
-          'https://edgeryders.eu/t/' + config.config.configId + '.json'
+          'https://forum.blivande.com/t/' + config.config.configId + '.json'
           ).then(({ data }) => {
             if (this.getJson(data.post_stream.posts[0].cooked)){
               var json = this.getJson(data.post_stream.posts[0].cooked);

@@ -1,5 +1,6 @@
 <template>
     <div class="hero_standard md:hero_standard-md" :style="elementStyle(data.style.wrapper, 'wrapper')" :class="elementClass(data.style.wrapper.class)">
+
       <div class="hero_image md:hero_image-md" v-if="data.image" :style="getImageWidth(data.image.width)">
         <img :src="data.image.url" />
       </div>
@@ -66,18 +67,25 @@ export default {
 </script>
 
 <style lang="scss">
+
 @responsive {
+.hero_container {
+  margin: 0;
+}
 .hero_standard {
-  @apply flex flex-col;
+  @apply flex flex-row h-screen w-screen items-end justify-end p-8;
   margin: 0 auto;
   .hero_title-md {
     padding: 0;
   }
 }
   .hero_actions {
-    @apply flex flex-col mt-4;
+    @apply w-full mb-10;
+    text-align: center;
+    display: inline-block !important;
     a {
-      @apply w-full;
+      width: auto !important;
+      max-width: 100px !important;
     }
   }
 .content_wrapper {
@@ -87,16 +95,19 @@ export default {
    @apply inline-block;
 }
 .hero_title {
-  @apply leading-tight;
+  @apply flex font-display text-3xl max-w-2xl mx-auto pl-0 pb-1 mb-4;
+  text-align: center;
 }
 .hero_description {
-  @apply text-lg mt-2;
+  @apply text-lg mt-2 mx-12;
   white-space: pre-wrap;
 }
 
-
 .hero_standard-md {
-  @apply flex flex-row items-center justify-center pt-2;
+  @apply flex flex-row h-screen w-screen items-end justify-end;
+
+  align-items: flex-end !important;
+
   img {
     width: 80%;
   }
@@ -105,7 +116,8 @@ export default {
   }
 }
   .hero_actions-md {
-    @apply inline-block;
+    @apply w-full mb-10;
+    text-align: center;
     a {
       width: auto !important;
     }

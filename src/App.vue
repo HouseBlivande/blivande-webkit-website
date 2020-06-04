@@ -199,7 +199,8 @@ export default {
   @apply flex fixed w-full h-full;
 }
 .site_container {
-  @apply flex flex-col w-full overflow-scroll;
+  @apply flex flex-col w-full;
+  overflow-x: hidden;
 }
 </style>
 

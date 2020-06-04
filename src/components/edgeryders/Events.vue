@@ -3,7 +3,7 @@
 
       <div class="flex justify-between items-center px-8 py-4 mx-auto mt-8 mb-6 w-full"  :style="textStyle('title', data.style)" :class="titleClassSize(data.style)">
         <h3 :class="titleClassSize(data.style)">{{data.config.title}}</h3>
-        <div class="toggle_menu" v-if="data.views && data.views.length">
+        <div class="toggle_menu" v-if="data.views && data.views.length > 1">
           <div v-for="(view, index) in data.views"
             class="toggle"
             :class="[Object.keys(view)[0], {active: activeView == Object.keys(view)[0]}]"

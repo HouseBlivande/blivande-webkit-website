@@ -13,12 +13,14 @@
 <script>
 import moment from "moment";
 import Standard from "@/components/views/Hero/Standard.vue";
+import Blivande from "@/components/views/Hero/Blivande.vue";
 
 export default {
   methods: {
   },
   components: {
-    Standard
+    Standard,
+    Blivande
   },
   filters: {
     formatDate: function(value) {
@@ -39,7 +41,6 @@ export default {
 
 .hero_container {
   @apply inline-block w-full;
-
 }
 
 
