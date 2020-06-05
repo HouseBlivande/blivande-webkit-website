@@ -33,7 +33,7 @@
     <div class="card_row md:card_row-md" ref="content" v-if="topics">
       <Card
         v-for="item in topics"
-        :key="item"
+        :key="item.id"
         ref="flipCard"
         :url="item.url"
         class="card topic md:card-md"

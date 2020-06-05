@@ -17,20 +17,10 @@
 
 <script src="js-yaml.min.js"></script>
 <script>
-import Nav from "@/components/ui/Navigation.vue";
-import MobileMenu from "@/components/ui/Mobile_Menu.vue";
-
-import hero from "@/components/core/Hero.vue";
 import Header from "@/components/core/Header.vue";
-import custom from "@/components/core/Custom.vue";
-import Content from "@/components/core/Content.vue";
 import events from "@/components/edgeryders/Events.vue";
 import topics from "@/components/core/Topics.vue";
-import people from "@/components/core/People.vue";
-import users from "@/components/core/Users.vue";
 import partners from "@/components/edgeryders/Partners.vue";
-import edgeryders from "@/components/edgeryders/About.vue";
-import custom_form from "@/components/core/Form.vue";
 import terms from "@/components/edgeryders/Terms.vue";
 
 export default {
@@ -41,33 +31,19 @@ export default {
       categories: [],
       componentKey: 0,
       stylesheet: null,
-      openMenu: false,
       openConfig: null,
       view: "configure",
     };
   },
   components: {
-    people,
-    users,
     topics,
     events,
-    hero,
     Header,
-    Nav,
-    MobileMenu,
-    custom,
-    Content,
     partners,
-    edgeryders,
-    custom_form,
     terms,
   },
   created() {
     this.getData();
-
-    // this.sections.map(section => {
-    //   return Vue.component(section.type, require(section.path + '.vue'))
-    // });
   },
   mounted() {},
   methods: {

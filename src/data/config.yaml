@@ -1,3 +1,140 @@
 ---
+# Discourse URL and site title
 config:
-  configId: 1117
+  # configId: 1117
+  baseUrl: https://forum.blivande.com
+  title: Blivande
+  favicon: https://forum.blivande.com/uploads/blivande/original/1X/1bc86efb9aeb6526586fba8be2a70caecd27bf23.png
+
+# Global style
+style:
+  fonts: ["Ubuntu:400,500,700,800,900", "Raleway:300,400,700"]
+  title:
+    width: [90%, 75%]
+    padding: [0 0 10px]
+    align: [left]
+    font: [Raleway]
+    weight: ['600']
+    class: ["text-2xl", "text-3xl"]
+
+blocks:
+
+# Header section
+- type: Header
+  config:
+    title: Blivande
+  style:
+    container:
+      margin: [0px 0px 0px]
+      padding: [0px 0px 0px]
+  views:
+  # Top menu
+  # Header hero section
+  - hero:
+      config:
+        template: Blivande
+      style:
+        container:
+          margin: [0px 0px 0px]
+          padding: [0px 0px 0px]
+        wrapper:
+          background: ["url(https://forum.blivande.com/uploads/blivande/original/1X/ce80eedb75991fa72b48a15ceb9ca803d15bc64b.jpeg)"]
+          backgroundPosition: ["15% 40%"] 
+          width: [100%, 100%]
+          margin: [0 auto]
+          padding: [0px 0px, 0px 0px]
+          font-family: ["Helvetica"]
+        title:
+          width: [100%, 100%]
+          padding: [0px 10px 0px]
+          font: ["Raleway"]
+          weight: ['300']
+          align: [center]
+          class: [text-3xl]
+          color: [white]
+        button:
+          width: [auto]
+          background: [none]
+          color: [white]
+          font: ["Raleway"]
+          weight: ['300']
+          align: [center]
+          class: [border border-gray-300 p-3 m-4]
+      title: "We believe that community is essential for wellbeing. Blivande is here for you, a place to work, create and connect."
+
+# Doors into Blivande:
+- type: topics
+  style:
+    title:
+      font: ["Raleway"]
+    container:
+      padding: [30px 0 0, 50px 0 20px]
+  id: doors
+  config:
+    view: cards
+    tag: featured-web
+    sort_by:
+      property: title
+      order: ascending
+  views:
+  - cards:
+      display: [title, date, excerpt, link]
+      sort_by:
+        property: title
+        order: ascending
+
+# Topics cards for "What is going on":
+- type: topics
+  title: "What's going on"
+  style:
+    title:
+      font: ["Raleway"]
+    container:
+      padding: [30px 0 0, 50px 0 20px]
+  id: topics
+  config:
+    view: grid
+    tag: stories-web
+    sort_by:
+      property: bumped_at
+      order: descending
+  views:
+  - grid:
+      display: [title, date, excerpt, link, favourites, replies]
+      sort_by:
+        property: title
+        order: ascending
+      style:
+        width: [90%, 75%]
+
+# Events
+- type: events
+  id: events
+  config:
+    title: Events
+    tags:
+      event: events-web
+      proposed: proposed
+      confirmed: confirmed
+  style:
+    container:
+      padding: [10px 0 40px]
+      margin: [40px 0 20px]
+    title:
+      font: ["Raleway"]
+  views:
+  - grid:
+      display: [title, date, time, image, excerpt, status]
+      sort_by:
+        property: title
+        order: ascending
+      style:
+        width: [90%, 75%]
+
+# Our story (from Blivande site)
+
+# Partners (From NGI Summit site)
+
+# Contact us (From Edgeryders Start site)
+
+# Terms footer

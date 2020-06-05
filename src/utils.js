@@ -97,31 +97,7 @@ export default {
       return !isNaN(num);
     },
     getData() {
-      var pathname = window.location.pathname.substring(1);
-      var address = window.location.hostname;
-      axios.get("https://edgeryders.eu/t/13671.json").then(({ data }) => {
-        var directories = this.getYaml(data.post_stream.posts[0].cooked);
-        window.console.log(directories);
-        var result = directories.filter(
-          (x) => x.alias == pathname || x.id == pathname || x.domain == address
-        )[0];
-        window.console.log(address);
-        if (result && result.id) {
-          try {
-            this.remoteConfig(result.id);
-          } catch (e) {
-            this.localConfig();
-          }
-        } else if (pathname && this.isNumeric(pathname)) {
-          try {
-            this.remoteConfig(pathname);
-          } catch (e) {
-            this.localConfig();
-          }
-        } else {
-          this.localConfig();
-        }
-      });
+      this.localConfig();
     },
     loadData(data) {
       if (this.overrideStyle) {

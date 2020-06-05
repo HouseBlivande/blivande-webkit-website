@@ -24,12 +24,7 @@
       </div>
     </div>
 
-    <TextView
-      class="mt-4"
-      v-if="data.config.text"
-      :mq="viewport"
-      :data="data.config"
-    />
+    <TextView class="mt-4" v-if="data.config.text" :data="data.config" />
 
     <div v-for="(view, index) in data.views" class="w-full" :key="index">
       <div v-if="view.grid && activeView == 'grid'">
@@ -107,7 +102,7 @@
           </div>
         </div>
 
-        <Grid :mq="viewport" v-bind:data="filteredItems" :config="view.grid">
+        <Grid v-bind:data="filteredItems" :config="view.grid">
           <template v-slot:item="{ item }">
             <GridItem>
               <template>
@@ -142,7 +137,6 @@
       <List
         class="mt-6"
         v-if="view.list && activeView == 'list'"
-        :mq="viewport"
         :data="filteredItems"
         :config="view.list"
       >
