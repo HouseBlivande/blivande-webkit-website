@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.19.1",
     "core-js": "^3.4.4",
+    "eslint-config-prettier": "^6.11.0",  
     "interact.js": "^1.2.8",
     "js-yaml": "^3.14.0",
     "moment": "^2.24.0",
@@ -23,6 +24,7 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^2.0.4",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
@@ -33,6 +35,7 @@
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
+    "purgecss": "^2.0.3", 
     "sass-loader": "^8.0.0",
     "tailwindcss": "^1.1.4",
     "vue-template-compiler": "^2.6.10",

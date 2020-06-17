@@ -324,11 +324,15 @@
 }
 
 .event_grid_options {
-  @apply flex items-center justify-center;
+  @apply flex;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   .event_search {
     @apply border pl-3 mr-4 flex items-center overflow-hidden bg-white;
     border-radius: 10px;
-    min-width: 50%;
+    width: 33%;
+    min-width: 300px;
     input {
       @apply m-0 pl-1;
       border-radius: 0;

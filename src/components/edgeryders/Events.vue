@@ -53,7 +53,7 @@
               placeholder="search"
             />
           </div>
-          <div class="popup">
+          <!-- div class="popup">
             <div
               class="glyph filters"
               :class="{ active: popup == 'filters' }"
@@ -78,7 +78,7 @@
                 </ul>
               </div>
             </transition>
-          </div>
+          </div -->
           <div class="popup">
             <div
               class="glyph calendar"

@@ -10,10 +10,10 @@ config:
 style:
   fonts: ["Ubuntu:400,500,700,800,900", "Raleway:300,400,700"]
   title:
-    width: [90%, 75%]
+    width: [90%, 90%]
     padding: [0 0 10px]
     align: [left]
-    font: [Raleway]
+    font: ["Raleway"]
     weight: ['600']
     class: ["text-2xl", "text-3xl"]
 
@@ -21,46 +21,21 @@ blocks:
 
 # Header section
 - type: Header
-  config:
-    title: Blivande
   style:
     container:
       margin: [0px 0px 0px]
       padding: [0px 0px 0px]
   views:
-  # Top menu
-  # Header hero section
-  - hero:
-      config:
-        template: Blivande
-      style:
-        container:
-          margin: [0px 0px 0px]
-          padding: [0px 0px 0px]
-        wrapper:
-          background: ["url(https://forum.blivande.com/uploads/blivande/original/1X/ce80eedb75991fa72b48a15ceb9ca803d15bc64b.jpeg)"]
-          backgroundPosition: ["15% 40%"] 
-          width: [100%, 100%]
-          margin: [0 auto]
-          padding: [0px 0px, 0px 0px]
-          font-family: ["Helvetica"]
-        title:
-          width: [100%, 100%]
-          padding: [0px 10px 0px]
-          font: ["Raleway"]
-          weight: ['300']
-          align: [center]
-          class: [text-3xl]
-          color: [white]
-        button:
-          width: [auto]
-          background: [none]
-          color: [white]
-          font: ["Raleway"]
-          weight: ['300']
-          align: [center]
-          class: [border border-gray-300 p-3 m-4]
-      title: "We believe that community is essential for wellbeing. Blivande is here for you, a place to work, create and connect."
+    # Top menu
+    # Header hero section
+    - hero:
+        title: "We believe that community is essential for wellbeing. Blivande is here for you, a place to work, create and connect."
+        style:
+          container:
+            margin: [0px 0px 0px]
+            padding: [0px 0px 0px]
+          wrapper:
+            width: [100%, 100%]
 
 # Doors into Blivande:
 - type: topics
@@ -79,6 +54,9 @@ blocks:
   views:
   - cards:
       display: [title, date, excerpt, link]
+      style:
+        title:
+          font: ["Raleway"]
       sort_by:
         property: title
         order: ascending
@@ -87,6 +65,7 @@ blocks:
 - type: topics
   title: "What's going on"
   style:
+    width: [100%, 100%]
     title:
       font: ["Raleway"]
     container:
@@ -105,7 +84,7 @@ blocks:
         property: title
         order: ascending
       style:
-        width: [90%, 75%]
+        width: [100%, 100%]
 
 # Events
 - type: events
@@ -129,11 +108,33 @@ blocks:
         property: title
         order: ascending
       style:
-        width: [90%, 75%]
+        width: [100%, 100%]
 
 # Our story (from Blivande site)
 
 # Partners (From NGI Summit site)
+- type: partners
+  id: partners
+  title: "Our parners"
+  display:
+    slides: 3
+  style:
+    title:
+      width: [100%, 100%]
+      align: ["center", "left"]
+  content:
+  - title: City of Amsterdam
+    outlet: City of Amsterdam
+    url: https://www.amsterdam.nl/en/
+    logo: "/img/logos/city_of_amsterdam.png"
+  - title: Nesta
+    outlet: Nesta
+    url: " https://www.nesta.org.uk/"
+    logo: "/img/logos/nesta.png"
+  - title: European Commission
+    outlet: European Commission
+    url: https://ec.europa.eu/info/departments/communications-networks-content-and-technology_en
+    logo: "/img/logos/eucom.png"
 
 # Contact us (From Edgeryders Start site)
 

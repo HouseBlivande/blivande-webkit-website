@@ -57,6 +57,8 @@
 
   .card_row .card.topic .topic_title h2 {
     @apply text-2xl font-bold bg-white px-2 py-2 inline;
+    font-family: "Raleway";
+    font-weight: 300;
     width: 90%;
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;

@@ -9,16 +9,8 @@
         <div class="hero_title flex flex-col md:hero_title-md">
           <h1
             v-if="data.title"
-            :class="getClass('title', data.style)"
-            :style="textStyle('title', data.style)"
             v-html="data.title"
           ></h1>
-          <h3
-            v-if="data.subtitle"
-            :style="textStyle('subtitle', data.style)"
-            :class="getClass('subtitle', data.style)"
-            v-html="data.subtitle"
-          ></h3>
         </div>
         <div class="hero_actions md:hero_actions-md">
           <a
@@ -52,9 +44,19 @@ export default {
 .hero_container {
   @apply inline-block w-full;
 }
+
+.hero_content {
+  @apply w-full;
+}
+
 @responsive {
+  .hero_content {
+    @apply w-full;
+  }
   .hero_container {
     margin: 0;
+    background: url("https://forum.blivande.com/uploads/blivande/original/1X/ce80eedb75991fa72b48a15ceb9ca803d15bc64b.jpeg");
+    background-position: 15% 40%;
   }
   .hero_standard {
     @apply flex flex-row h-screen w-screen items-end justify-end p-8;
@@ -81,6 +83,9 @@ export default {
   .hero_title {
     @apply flex font-display text-3xl max-w-2xl mx-auto pl-0 pb-1 mb-4;
     text-align: center;
+    color: white;
+    font-weight: 300;
+    font-family: "Raleway", "Times", serif
   }
   .hero_description {
     @apply text-lg mt-2 mx-12;
