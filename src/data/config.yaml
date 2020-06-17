@@ -113,28 +113,6 @@ blocks:
 # Our story (from Blivande site)
 
 # Partners (From NGI Summit site)
-- type: partners
-  id: partners
-  title: "Our parners"
-  display:
-    slides: 3
-  style:
-    title:
-      width: [100%, 100%]
-      align: ["center", "left"]
-  content:
-  - title: City of Amsterdam
-    outlet: City of Amsterdam
-    url: https://www.amsterdam.nl/en/
-    logo: "/img/logos/city_of_amsterdam.png"
-  - title: Nesta
-    outlet: Nesta
-    url: " https://www.nesta.org.uk/"
-    logo: "/img/logos/nesta.png"
-  - title: European Commission
-    outlet: European Commission
-    url: https://ec.europa.eu/info/departments/communications-networks-content-and-technology_en
-    logo: "/img/logos/eucom.png"
 
 # Contact us (From Edgeryders Start site)
 
