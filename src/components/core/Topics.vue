@@ -44,20 +44,14 @@
         <template v-slot:item="{ item }">
           <GridItem>
             <template>
-              <div slot="header">
-                <a :href="item.url" target="_blank" class="">{{
-                  item.title
-                }}</a>
-                <p class="item_date" v-if="show(view.grid.display, 'date')">
-                  {{ item.created_at | formatDate }}
-                </p>
-              </div>
               <div slot="content">
-                <div
-                  class="item_image"
-                  :style="{ background: 'url(' + item.image_url + ')' }"
-                ></div>
-                <div class="item_excerpt" v-html="item.excerpt"></div>
+                <a :href="item.url" target="_blank">
+                    <div
+                      class="item_image"
+                      :style="{ background: 'url(' + getImgUrl(item) + ')' }"
+                    ></div>
+                  <div class="item_excerpt" v-html="'<strong>' + item.title + '</strong>' + '<br>' + item.excerpt.slice(0,200) + '...'"></div>
+                </a>
               </div>
               <div slot="footer">
                 <div class="item_meta">
@@ -218,6 +212,14 @@ export default {
           this.topics = topics;
           this.ready = true;
         });
+    },
+    getImgUrl(item) {
+      if (item.image_url) {
+        return item.image_url
+      } else {
+        let match = item.cooked.match(/(img src=")([^\s\\]*)/gi)[0].replace('img src="','').replace('"','')
+        return this.baseUrl + match
+      }
     },
     getViews(data) {
       return data.reduce(function (result, view) {

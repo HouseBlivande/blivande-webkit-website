@@ -15,20 +15,20 @@ export default {
 .grid_item {
   @apply inline-block w-full border border-gray-200 rounded-lg mb-4 overflow-hidden;
   .header {
-    @apply px-4 pt-3 w-full border-gray-200;
+    @apply px-4 w-full border-gray-200;
     a {
-      @apply w-full inline-block pb-2 font-bold;
+      @apply w-full pt-3 inline-block pb-2 font-bold;
     }
     .item_date {
-      @apply inline-block text-sm border-t w-full border-gray-200 m-0 pt-2 leading-tight;
+      @apply inline-block text-sm border-t w-full border-gray-200 m-0 py-2 leading-tight;
       color: rgba(0, 0, 0, 0.4);
     }
   }
   .content {
     @apply text-sm;
     .item_image {
-      @apply w-full mt-3;
-      height: 120px;
+      @apply w-full;
+      height: 200px;
       background-size: cover !important;
       background-position: 50% 50% !important;
     }

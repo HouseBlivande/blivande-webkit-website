@@ -109,7 +109,7 @@
                 <div slot="header">
                   <a :href="item.url" target="_blank" class="">{{
                     item.title
-                  }}</a>
+                  }}
                   <p
                     class="item_date"
                     v-if="item.event && show('date', view.grid.display)"
@@ -119,14 +119,17 @@
                       >at {{ item.event.start | formatTime }}</span
                     >
                   </p>
+                  </a>
                 </div>
                 <div slot="content">
-                  <div
-                    class="item_image"
-                    v-if="item.image_url && show('image', view.grid.display)"
-                    :style="{ background: 'url(' + item.image_url + ')' }"
-                  ></div>
-                  <div class="item_excerpt" v-html="item.excerpt"></div>
+                  <a :href="item.url" target="_blank" class="">
+                    <div
+                      class="item_image"
+                      v-if="item.image_url && show('image', view.grid.display)"
+                      :style="{ background: 'url(' + item.image_url + ')' }"
+                    ></div>
+                    <div class="item_excerpt" v-html="item.excerpt"></div>
+                  </a>
                 </div>
               </template>
             </GridItem>
@@ -338,9 +341,19 @@ export default {
           `${this.baseUrl}/webkit_components/topics.json?serializer=event&tags=${tag}&per=500`
         )
         .then(({ data }) => {
-          this.events = data;
+          this.events = this.sortBy(data, "start", "ascending");
           this.getEventFilters();
         });
+    },
+    sortBy(data, value, order) {
+      var ord_val = -1;
+      if (order == "ascending") {
+        ord_val = 1;
+      }
+      var sorted = data.sort((a, b) =>
+        a['event'][value] > b['event'][value] ? ord_val : b['event'][value] > a['event'][value] ? -ord_val : 0
+      );
+      return sorted;
     },
     isActiveFilter(obj) {
       return this.search.filters.findIndex((tag) => tag.name == obj.name);
