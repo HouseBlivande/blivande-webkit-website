@@ -86,6 +86,7 @@ export default {
     text-align: center;
     color: white;
     font-weight: 300;
+    text-shadow: 1px 1px #000000;
     font-family: "Raleway", "Times", serif
   }
   .hero_description {
