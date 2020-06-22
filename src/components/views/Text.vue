@@ -59,7 +59,7 @@ export default {
 <style lang="scss">
 @responsive {
   .block_text {
-    @apply flex;
+    @apply flex py-12 my-12;
     width: 100%;
   }
 
@@ -87,6 +87,14 @@ export default {
   p,
   h3 {
     @apply mb-3;
+  }
+  h1 {
+    @apply text-3xl;
+    text-shadow: 1px 1px #000000;
+    font-family: "Raleway";
+  }
+  a {
+    @apply font-bold underline;
   }
 }
 

@@ -22,6 +22,7 @@ import events from "@/components/edgeryders/Events.vue";
 import topics from "@/components/core/Topics.vue";
 import partners from "@/components/edgeryders/Partners.vue";
 import terms from "@/components/edgeryders/Terms.vue";
+import Content from "@/components/core/Content.vue";
 
 export default {
   name: "home",
@@ -39,6 +40,7 @@ export default {
     topics,
     events,
     Header,
+    Content,
     partners,
     terms,
   },

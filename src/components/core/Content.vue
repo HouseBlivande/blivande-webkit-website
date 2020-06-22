@@ -1,7 +1,7 @@
 <template>
   <div
     class="block md:block-md"
-    :style="elementStyle(data.style.container, 'container')"
+    :style="styleObj(data.style)"
     :class="elementClass(data.style.container.class)"
   >
     <div
@@ -33,7 +33,6 @@
             v-if="view.text"
             :mq="viewport"
             :data="view.text"
-            :stylesheet="view.style"
           />
           <FormView v-if="view.form" :mq="viewport" :data="view.form" />
         </div>
@@ -58,6 +57,7 @@ export default {
     styleObj(item) {
       var styleObj = {
         background: "#000",
+        backgroundAttachment: "fixed",
         color: "#fff",
       };
       if (item.background) {

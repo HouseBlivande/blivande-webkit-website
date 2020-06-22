@@ -57,6 +57,7 @@ export default {
     margin: 0;
     background: url("https://forum.blivande.com/uploads/blivande/original/1X/ce80eedb75991fa72b48a15ceb9ca803d15bc64b.jpeg");
     background-position: 15% 40%;
+    background-attachment: fixed;
   }
   .hero_standard {
     @apply flex flex-row h-screen w-screen items-end justify-end p-8;
@@ -66,7 +67,7 @@ export default {
     }
   }
   .hero_actions {
-    @apply w-full mb-10;
+    @apply w-full mb-10 mt-10;
     text-align: center;
     display: inline-block !important;
     a {
@@ -105,7 +106,7 @@ export default {
     }
   }
   .hero_actions-md {
-    @apply w-full mb-10;
+    @apply w-full mb-10 mt-10;
     text-align: center;
     a {
       width: auto !important;
