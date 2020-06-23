@@ -1,7 +1,6 @@
 <template>
   <div
     class="flip_card md:flip-card-md"
-    @click="flipCard"
     :class="{ active: flipped }"
     :href="url"
     target="_blank"

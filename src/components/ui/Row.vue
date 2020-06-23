@@ -1,35 +1,5 @@
 <template>
   <div class="row md:row-md">
-    <div class="card_row" ref="content" v-if="users">
-      <Card
-        v-for="(item, index) in users"
-        :key="index"
-        class="card md:card-md"
-        :url="item.url"
-      >
-        <template slot="front">
-          <div
-            class="avatar mt-4"
-            @click="scroll"
-            :style="{ backgroundImage: 'url(' + item.avatar_url + ')' }"
-          ></div>
-          <div class="card_name">
-            <h3>
-              <span v-if="item.name">{{ item.name }}</span
-              ><span v-else>{{ item.username }}</span>
-            </h3>
-            <p>Active since {{ item.created_at | formatDate }}</p>
-          </div>
-        </template>
-        <template slot="back">
-          <h3>
-            About
-          </h3>
-          <div class="card_excerpt" v-html="item.bio_raw"></div>
-          <div class="card_footer">Connect with @{{ item.username }}</div>
-        </template>
-      </Card>
-    </div>
     <div class="card_row md:card_row-md" ref="content" v-if="topics">
       <Card
         v-for="item in topics"
@@ -45,15 +15,18 @@
           ></div>
         </template>
         <template slot="front">
-          <div class="topic_data">
-            <div class="topic_title" v-if="show('title')">
-              <h2 :style="uiStyle('highlight', stylesheet)">
-                {{ item.title.split(".")[1] }}
-              </h2>
+          <a
+            :href="item.url"
+            target="_blank"
+          >
+            <div class="topic_data">
+              <div class="topic_title" v-if="show('title')">
+                <h2 :style="uiStyle('highlight', stylesheet)">
+                  {{ item.title.split(".")[1] }}
+                </h2>
+              </div>
             </div>
-
-            <Profile v-if="show('author')" :data="item.author" />
-          </div>
+          </a>
         </template>
         <template slot="back">
           <div
@@ -77,12 +50,10 @@
 <script>
 import moment from "moment";
 import Card from "@/components/ui/FlipCard.vue";
-import Profile from "@/components/ui/Profile.vue";
 export default {
   props: ["users", "topics", "display", "globalStyle", "stylesheet"],
   components: {
-    Card,
-    Profile,
+    Card
   },
   data() {
     return {
