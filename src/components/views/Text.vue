@@ -90,7 +90,7 @@ export default {
   }
   h1 {
     @apply text-3xl;
-    text-shadow: 1px 1px #000000;
+    text-shadow: 2px 1px #000000;
     font-family: "Raleway";
   }
   a {
