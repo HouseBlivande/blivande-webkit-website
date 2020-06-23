@@ -34,6 +34,8 @@ export default {
     }
     .item_excerpt {
       @apply px-4 py-3;
+      height: 170px;
+      overflow: hidden;
     }
   }
 }

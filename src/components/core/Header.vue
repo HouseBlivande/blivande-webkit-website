@@ -24,7 +24,7 @@ export default {
   components: {
     Hero,
   },
-  props: ["category", "data", "baseUrl", "globalStyle", "index"],
+  props: ["data", "globalStyle", "index"],
 };
 </script>
 

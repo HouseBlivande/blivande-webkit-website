@@ -1,7 +1,6 @@
 <template>
-  <div class="section_terms md:py-10 flex-col items-center" id="terms">
-
-    <div class="pt-6 terms_container md:terms_container-md">
+  <div class="section_terms md:py-10 flex-col items-left" id="terms">
+    <div class="pt-6 terms_container mx-12 md:terms_container-md">
       <h1 class="text-white font-bold border-b border-white pb-2">
         Social media and forums
       </h1>
@@ -47,5 +46,11 @@
         </a>
       </p>
     </div>
-  </div> </template
->;
+  </div> 
+</template>
+
+<style lang="scss">
+  .section_terms {
+    @apply w-full bg-black p-6 text-left flex;
+  }
+</style>

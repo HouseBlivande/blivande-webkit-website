@@ -2,7 +2,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import "./assets/main.scss";
 import utils from "@/utils";
-
 import VueMq from "vue-mq";
 import VueScrollactive from "vue-scrollactive";
 import Vue2TouchEvents from "vue2-touch-events";

@@ -31,7 +31,7 @@
 <script>
 
 export default {
-  props: ["data", "config", "stylesheet", "baseUrl", "globalStyle"],
+  props: ["data"],
 };
 </script>
 

@@ -34,7 +34,6 @@
             :mq="viewport"
             :data="view.text"
           />
-          <FormView v-if="view.form" :mq="viewport" :data="view.form" />
         </div>
       </div>
     </div>
@@ -44,14 +43,12 @@
 <script>
 import TextView from "@/components/views/Text.vue";
 import ImageView from "@/components/views/Image.vue";
-import FormView from "@/components/views/Form.vue";
 
 export default {
   props: ["data", "html", "stylesheet", "globalStyle"],
   components: {
     TextView,
-    ImageView,
-    FormView,
+    ImageView
   },
   methods: {
     styleObj(item) {

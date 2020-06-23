@@ -28,7 +28,7 @@
 
     <div v-for="(view, index) in data.views" class="w-full" :key="index">
       <div v-if="view.grid && activeView == 'grid'">
-        <div class="event_grid_options w-full mb-6">
+        <!-- div class="event_grid_options w-full mb-6">
           <div class="event_search">
             <div
               v-for="filter in search.filters"
@@ -53,32 +53,6 @@
               placeholder="search"
             />
           </div>
-          <!-- div class="popup">
-            <div
-              class="glyph filters"
-              :class="{ active: popup == 'filters' }"
-              @click="activePopup('filters')"
-            ></div>
-            <transition name="fade">
-              <div class="popup_container" v-if="popup == 'filters'">
-                <p class="popup_title">Filters</p>
-                <ul>
-                  <li
-                    v-for="filter in data.config.filters"
-                    :key="filter.tag"
-                    @click="setFilter(filter)"
-                    :class="{ active: isActiveFilter(filter) > -1 }"
-                  >
-                    <span
-                      class="tag_marker"
-                      :style="{ background: filter.color }"
-                    ></span>
-                    {{ filter.tag }}
-                  </li>
-                </ul>
-              </div>
-            </transition>
-          </div -->
           <div class="popup">
             <div
               class="glyph calendar"
@@ -100,7 +74,7 @@
               </div>
             </transition>
           </div>
-        </div>
+        </div -->
 
         <Grid v-bind:data="filteredItems" :config="view.grid">
           <template v-slot:item="{ item }">
@@ -199,14 +173,11 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-
 import Grid from "@/components/views/Grid.vue";
 import GridItem from "@/components/views/GridItem.vue";
 import List from "@/components/views/ListView.vue";
-import Calendar from "@/components/ui/Calendar.vue";
-
+// import Calendar from "@/components/ui/Calendar.vue";
 import TextView from "@/components/views/Text.vue";
-
 import { bus } from "@/main";
 
 export default {
@@ -229,7 +200,7 @@ export default {
     GridItem,
     List,
     TextView,
-    Calendar,
+    // Calendar,
   },
   methods: {
     activePopup(value) {

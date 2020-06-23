@@ -218,4 +218,24 @@ export default {
     transition: transform 0.35s ease;
   }
 }
+
+.wrapper .list {
+  @apply mr-10 mt-4;
+  max-height: 500px;
+  width: 100%;
+  border: 1px solid #efefef;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.list_item {
+  @apply border-gray-200 border-b py-4 px-5;
+}
+.list_item:hover {
+  @apply bg-gray-100;
+  cursor: pointer;
+}
+.list_item.active {
+  @apply bg-black text-white;
+}
 </style>
